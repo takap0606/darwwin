@@ -308,7 +308,7 @@ const ProfileContent = () => {
   return (
     <>
       <Head>
-        <title>CRYPTO TRUST Dashboard - My Profile</title>
+        <title>DARWWIN Dashboard - My Profile</title>
       </Head>
       <Grid
         sx={{ px: 4, pb: 4 }}

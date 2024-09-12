@@ -41,9 +41,9 @@ const TermsOfUse = () => {
       3) "Registered User" means an individual, corporation or organization that
       has been registered as a user of the Service in accordance with Article 3
       (Registration). <br />
-      4) "Service" means the service named "CRYPTO TRUST" provided by the
-      Company. (In the event that the name or content of the service is changed
-      for any reason, this includes the service after such change. <br />
+      4) "Service" means the service named "DARWWIN" provided by the Company.
+      (In the event that the name or content of the service is changed for any
+      reason, this includes the service after such change. <br />
       5) "Service Usage Contract" means a contract for the use of the Service
       between the Company and a Registered User, which is concluded under the
       terms and conditions of this Terms of Use. <br />
@@ -110,23 +110,23 @@ const TermsOfUse = () => {
       Article 6 (Process from Lending NFTs to Selling NFTs.)
       <br />
       1. Registered Users may lend NFTs held by them to the Company by
-      connecting their NFTs to Crypto Trust's online system via their own
-      MetaMask Wallet ("NFT Lending"). <br />
+      connecting their NFTs to DARWWIN's online system via their own MetaMask
+      Wallet ("NFT Lending"). <br />
       2. At the time of NFT Lending, the User may select from the options
       specified by the Company a portfolio of crypto assets to be operated by
-      the automated crypto asset management system within Crypto Trust. <br />
-      3. The User can check the performance of Crypto Trust's operations for the
+      the automated crypto asset management system within DARWWIN. <br />
+      3. The User can check the performance of DARWWIN's operations for the
       portfolio corresponding to the NFT being lent on his/her own dashboard on
-      Crypto Trust (to be updated weekly). <br />
-      4. The User may return NFTs at any time via Crypto Trust's online page or
-      sell them on the external market while they are still on lend to
-      (connected to) Crypto Trust. There are no fees or other costs associated
-      with these returns or sales. <br />
-      5. The User may also sell the NFTs on lend to the Crypto Trust in exchange
-      for crypto assets in the portfolio operated by the Crypto Trust. In this
-      case, the sale proceeds will be deducted from the fee (5% of the sale
-      proceeds and 20-30% of the profit calculated in USD) specified by the
-      Company in the system in advance. <br />
+      DARWWIN (to be updated weekly). <br />
+      4. The User may return NFTs at any time via DARWWIN's online page or sell
+      them on the external market while they are still on lend to (connected to)
+      DARWWIN. There are no fees or other costs associated with these returns or
+      sales. <br />
+      5. The User may also sell the NFTs on lend to the DARWWIN in exchange for
+      crypto assets in the portfolio operated by the DARWWIN. In this case, the
+      sale proceeds will be deducted from the fee (5% of the sale proceeds and
+      20-30% of the profit calculated in USD) specified by the Company in the
+      system in advance. <br />
       6. The fees in the preceding paragraph may be subject to preferential
       services depending on the User's level of contribution to the Service,
       which is separately specified by the Company.

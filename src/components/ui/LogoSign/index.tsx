@@ -48,7 +48,7 @@ function Logo() {
   const { user, isLoading } = useFirebaseUser();
 
   return (
-    <TooltipWrapper title={'CRYPTO TRUST Dashboard'} arrow>
+    <TooltipWrapper title={'DARWWIN Dashboard'} arrow>
       {!isLoading && user ? (
         <LogoWrapper href={href}>
           <LogoSignWrapper>

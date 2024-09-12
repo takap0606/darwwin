@@ -334,7 +334,7 @@ function SetInvitationCode({ userInfo, db }: { userInfo: any; db: any }) {
             }}
             variant="h3"
           >
-            Welcome to CRYPTO TRUST!
+            Welcome to DARWWIN!
           </Typography>
 
           <Button

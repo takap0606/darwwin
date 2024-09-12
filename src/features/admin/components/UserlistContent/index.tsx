@@ -454,7 +454,7 @@ const UserlistContent = () => {
   return (
     <>
       <Head>
-        <title>CRYPTO TRUST Dashboard - User List</title>
+        <title>DARWWIN Dashboard - User List</title>
       </Head>
       <Grid
         sx={{ px: 4 }}

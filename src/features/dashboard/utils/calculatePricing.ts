@@ -13,7 +13,7 @@ export const calculateOpenSeaPricing = (
     price = (last_sale.payment.quantity * 1e-18).toString();
     fixedPrice = Number(price).toFixed(4).toString();
     usd_eth = (Number(price) * tokens.ethPrice).toString();
-    // Crypto Trustではセット時に0.97*0.8を掛ける
+    // DARWWINではセット時に0.97*0.8を掛ける
     usd_base_investment_amount = (Number(usd_eth) * 0.97 * 0.8).toString();
     fixed_usd_base_investment_amount = Number(usd_base_investment_amount)
       .toFixed(0)
@@ -42,7 +42,7 @@ export const calculateX2Y2Pricing = (
     price = last_sale.price.amount.decimal.toString();
     fixedPrice = Number(price).toFixed(4).toString();
     usd_eth = last_sale.price.amount.usd;
-    // Crypto Trustではセット時に0.97*0.8を掛ける
+    // DARWWINではセット時に0.97*0.8を掛ける
     usd_base_investment_amount = (Number(usd_eth) * 0.97 * 0.8).toString();
     fixed_usd_base_investment_amount = Number(usd_base_investment_amount)
       .toFixed(0)

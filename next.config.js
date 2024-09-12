@@ -20,7 +20,7 @@ module.exports = withSentryConfig(
     silent: true,
 
     org: 'ichika-inc',
-    project: 'cryptotrust-v2',
+    project: 'darwwin',
   },
   {
     // For all available options, see:

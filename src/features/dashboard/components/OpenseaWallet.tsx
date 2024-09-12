@@ -4,7 +4,6 @@ import {
   Grid,
   Box,
   CardContent,
-  Typography,
   Avatar,
   Tooltip,
   CardActionArea,
@@ -62,19 +61,9 @@ function OpenseaWallet({ tokens }: any) {
   const { db } = useFirebase();
   const { userInfo } = useContext(UserContext);
 
-  const handleMoveStoreV1 = () => {
-    // FIXME: X2Y2に変更する
-    router.push('https://opensea.io/collection/luppyclubofficial');
-  };
-
-  const handleMoveStoreV2 = () => {
-    // FIXME: X2Y2に変更する
-    router.push('https://opensea.io/collection/crazy-luppy');
-  };
-
   const handleMoveX2Y2Store = () => {
     // FIXME: X2Y2に変更する
-    router.push('https://x2y2.io/collection/crazy-luppy-12/items');
+    router.push('https://x2y2.io/collection/bitbull-3/items');
   };
 
   const [nftListData, setNftListData] = useState<any>([]);
@@ -88,33 +77,37 @@ function OpenseaWallet({ tokens }: any) {
     },
   };
 
-  // const WALLET_ADDRESS = '0x655be34b1b511b607012f05e6eb36a79769b6c1f';
+  const WALLET_ADDRESS = '0x091D4e4BAC946fD9564710D7eCDed83Ca808e606';
 
-  const WALLET_ADDRESS = userInfo.walletAddress || '';
+  // const WALLET_ADDRESS = userInfo.walletAddress || '';
 
   useEffect(() => {
     if (WALLET_ADDRESS !== '' && db) {
       setIsLoading(true);
       const fetchData = async () => {
         try {
-          const openSeaCollectionSlugs = [
-            'luppyclubofficial',
-            'specialprivatebluppy',
-            'crazy-luppy',
-          ];
+          const openSeaCollectionSlugs = [''];
 
           const x2y2CollectionSlugs = [
-            '0x8a8e262861910e8e7bff93b33c33648bd122667a', // CRAZY LUPPY
+            '0xf532e895f1fb80ce4bc1bb88c2887d35e764c5d4', // BITBULL
             // '0x1180f09c2f76924280cb54ae205efa7b06c03c04', // TEST
           ];
 
-          // ウォレットアドレスに基づいてNFTリストを取得
-          const openSeaRequests = openSeaCollectionSlugs.map((slug) =>
-            axios.get(
-              `https://api.opensea.io/api/v2/chain/ethereum/account/${WALLET_ADDRESS}/nfts?collection=${slug}`,
-              options,
-            ),
-          );
+          let openSeaAssets: any[] = [];
+
+          if (process.env.NEXT_PUBLIC_OPENSEA_API) {
+            const openSeaRequests = openSeaCollectionSlugs.map((slug) =>
+              axios.get(
+                `https://api.opensea.io/api/v2/chain/ethereum/account/${WALLET_ADDRESS}/nfts?collection=${slug}`,
+                options,
+              ),
+            );
+
+            const openSeaResponses = await Promise.all(openSeaRequests);
+            openSeaAssets = openSeaResponses.flatMap(
+              (response) => response.data.nfts,
+            );
+          }
 
           const x2y2Requests = x2y2CollectionSlugs.map((slug) =>
             axios.get(
@@ -123,60 +116,54 @@ function OpenseaWallet({ tokens }: any) {
             ),
           );
 
-          const [openSeaResponses, x2y2Responses] = await Promise.all([
-            Promise.all(openSeaRequests),
-            Promise.all(x2y2Requests),
-          ]);
-
-          const openSeaAssets = openSeaResponses.flatMap(
-            (response) => response.data.nfts,
-          );
-
+          const x2y2Responses = await Promise.all(x2y2Requests);
           const x2y2Assets = x2y2Responses.flatMap(
             (response) => response.data.tokens,
           );
 
-          // 各NFTに対してイベントを取得
-          // OpenSeaから最新の販売イベントを取得する関数
-          const fetchLastSaleEvent = async (asset: {
-            contract: any;
-            identifier: any;
-          }) => {
-            const eventsUrl = `https://api.opensea.io/api/v2/events/chain/ethereum/contract/${asset.contract}/nfts/${asset.identifier}?event_type=sale`;
-            const eventsResponse = await axios.get(eventsUrl, options);
-            const saleEvents = eventsResponse.data.asset_events.filter(
-              (event: { event_type: string }) => event.event_type === 'sale',
+          // OpenSea specific processing if assets were fetched
+          let resolvedOpenSeaAssets: any[] = [];
+          if (openSeaAssets.length > 0) {
+            const fetchLastSaleEvent = async (asset: {
+              contract: any;
+              identifier: any;
+            }) => {
+              const eventsUrl = `https://api.opensea.io/api/v2/events/chain/ethereum/contract/${asset.contract}/nfts/${asset.identifier}?event_type=sale`;
+              const eventsResponse = await axios.get(eventsUrl, options);
+              const saleEvents = eventsResponse.data.asset_events.filter(
+                (event: { event_type: string }) => event.event_type === 'sale',
+              );
+
+              const latestSaleEvent = saleEvents.reduce(
+                (
+                  latest: { event_timestamp: number },
+                  event: { event_timestamp: number },
+                ) =>
+                  latest.event_timestamp > event.event_timestamp
+                    ? latest
+                    : event,
+                saleEvents[0] || {},
+              );
+
+              return latestSaleEvent;
+            };
+
+            const normalizedOpenSeaAssetsPromises = openSeaAssets.map(
+              async (asset) => {
+                const last_sale = await fetchLastSaleEvent(asset);
+                return {
+                  id: asset.identifier,
+                  platform: 'opensea',
+                  pricing: calculateOpenSeaPricing(last_sale, tokens),
+                  ...asset,
+                };
+              },
             );
 
-            // 最新のSaleイベントを取得
-            const latestSaleEvent = saleEvents.reduce(
-              (
-                latest: { event_timestamp: number },
-                event: { event_timestamp: number },
-              ) =>
-                latest.event_timestamp > event.event_timestamp ? latest : event,
-              saleEvents[0] || {},
+            resolvedOpenSeaAssets = await Promise.all(
+              normalizedOpenSeaAssetsPromises,
             );
-
-            return latestSaleEvent;
-          };
-
-          // 同じ形式に変換
-          const normalizedOpenSeaAssetsPromises = openSeaAssets.map(
-            async (asset) => {
-              const last_sale = await fetchLastSaleEvent(asset);
-              return {
-                id: asset.identifier,
-                platform: 'opensea',
-                pricing: calculateOpenSeaPricing(last_sale, tokens),
-                ...asset,
-              };
-            },
-          );
-
-          const resolvedOpenSeaAssets = await Promise.all(
-            normalizedOpenSeaAssetsPromises,
-          );
+          }
 
           const normalizedX2y2Assets = x2y2Assets.map((asset) => ({
             id: asset.token.tokenId,
@@ -187,7 +174,7 @@ function OpenseaWallet({ tokens }: any) {
             ...asset.token,
           }));
 
-          // Firestoreでフィルタリング
+          // Firestore filtering
           const filterAssets = async (assets: any[]) => {
             const filteredAssetsPromises = assets.map(async (asset) => {
               if (!userInfo.walletAddress || !asset.id) {
@@ -218,7 +205,6 @@ function OpenseaWallet({ tokens }: any) {
             ],
           );
 
-          // 両方のNFTリストを結合して状態に格納
           setNftListData([...filteredOpenSeaAssets, ...filteredX2y2Assets]);
         } catch (error) {
           console.error('Error fetching data:', error);
@@ -242,24 +228,8 @@ function OpenseaWallet({ tokens }: any) {
         }}
       >
         <Box display="flex">
-          <Button onClick={handleMoveStoreV1} size="small" variant="outlined">
+          <Button onClick={handleMoveX2Y2Store} size="small" variant="outlined">
             {'Buy v1 NFTs'}
-          </Button>
-          <Button
-            sx={{ ml: 1 }}
-            onClick={handleMoveStoreV2}
-            size="small"
-            variant="outlined"
-          >
-            {'Buy v2 NFTs'}
-          </Button>
-          <Button
-            sx={{ ml: 1 }}
-            onClick={handleMoveX2Y2Store}
-            size="small"
-            variant="outlined"
-          >
-            {'Buy NFTs on X2Y2'}
           </Button>
         </Box>
       </Box>
@@ -269,7 +239,7 @@ function OpenseaWallet({ tokens }: any) {
           <Tooltip
             arrow
             title={'Click to add a new NFT'}
-            onClick={handleMoveStoreV2}
+            onClick={handleMoveX2Y2Store}
           >
             <CardAddAction>
               <CardActionArea

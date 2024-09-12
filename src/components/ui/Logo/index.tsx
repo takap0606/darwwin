@@ -117,7 +117,7 @@ function Logo() {
           <Tooltip title={'Version' + ' 1.0'} arrow placement="right">
             <VersionBadge>1.0</VersionBadge>
           </Tooltip>
-          <LogoText>CRYPTO TRUST</LogoText>
+          <LogoText>DARWWIN</LogoText>
         </LogoTextWrapper>
       </Box>
     </LogoWrapper>

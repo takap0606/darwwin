@@ -39,3 +39,6 @@ next-env.d.ts
 sa.json
 # Sentry Auth Token
 .sentryclirc
+
+# service file
+service.json

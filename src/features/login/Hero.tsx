@@ -102,20 +102,20 @@ function Hero() {
             color="text.secondary"
             fontWeight="normal"
           >
-            Welcome to CRYPTO TRUST! As a trailblazing Web3 company, we're
-            excited to offer a distinctive platform for NFT staking, now
-            enhanced with the capability to unlock the true value of NFTs. Our
-            platform invites everyone to easily participate in NFT staking,
-            tapping into the cryptocurrency market's growth potential. We focus
-            on a select range of cryptocurrencies to foster portfolio expansion
-            and asset growth. Designed for ease of use, our platform serves both
-            beginners and experts, streamlining digital asset management. With
-            advanced technology and a secure environment, we're opening new
-            paths for digital asset expansion. Join CRYPTO TRUST to dive into
-            the innovative realm of NFT staking. Here, you'll find a safe and
-            efficient entry point into the cryptocurrency world and take part in
-            the vanguard of the new era in digital asset growth, fully realizing
-            the intrinsic value of NFTs. Start your journey with us today!
+            Welcome to DARWWIN! As a trailblazing Web3 company, we're excited to
+            offer a distinctive platform for NFT staking, now enhanced with the
+            capability to unlock the true value of NFTs. Our platform invites
+            everyone to easily participate in NFT staking, tapping into the
+            cryptocurrency market's growth potential. We focus on a select range
+            of cryptocurrencies to foster portfolio expansion and asset growth.
+            Designed for ease of use, our platform serves both beginners and
+            experts, streamlining digital asset management. With advanced
+            technology and a secure environment, we're opening new paths for
+            digital asset expansion. Join DARWWIN to dive into the innovative
+            realm of NFT staking. Here, you'll find a safe and efficient entry
+            point into the cryptocurrency world and take part in the vanguard of
+            the new era in digital asset growth, fully realizing the intrinsic
+            value of NFTs. Start your journey with us today!
           </TypographyH2>
           <Typography fontSize="1.8rem" color="#fff" fontWeight="bold">
             LUPPY NFT ROADMAP
@@ -131,7 +131,7 @@ function Hero() {
                 <br />
                 - Launch of LUPPY collection
                 <br />
-                - Partnership with CRYPTO TRUST
+                - Partnership with DARWWIN
                 <br />
               </Typography>
             </Typography>

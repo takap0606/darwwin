@@ -9,72 +9,72 @@ const PrivacyPolicy = ({ handleClose }: { handleClose: any }) => {
           overflowY: 'scroll',
         }}
       >
-        OUR COMMITMENT TO PRIVACY PROTECTION At Crypto Trust and at our
-        subsidiaries (collectively “We”, “Our” or “Us”), an important part of
-        our commitment to provide you with service excellence is our respect for
-        your right to privacy. Keeping our customers' and employees’ information
-        and affairs in strict confidence is a cornerstone of our business. The
-        range of products and services we offer our customers continues to
-        expand, and the technology we use continues to change. But, no matter
-        how our business changes, we will always protect your privacy. The
-        policies and procedures which we practice in order to protect your
-        privacy are in place across our firm. In the following pages we describe
-        these policies and procedures and how we put them into practice so that
-        you have control over how we collect, use and disclose your personal
-        information. Protecting Your Privacy Means: We keep your personal
-        information and the business you do with us in strict confidence Your
-        personal information is not sold to, rented to, leased to, or shared
-        with, third parties without your consent You have control over how we
-        obtain, uses, and gives out personal information about you You have
-        access to the personal information we have about you We respect your
-        privacy when we market our products and services SECTION 1 -
-        Accountability We are accountable for the protection of your personal
-        information. While senior management is ultimately accountable for the
-        protection of that information, the day-to-day monitoring for compliance
-        may be delegated to staff. While we have procedures in place to assist
-        our employees in the practice of our privacy policies, the overall
-        responsibility for the protection of personal information, and
-        compliance with this policy rests with Our Privacy Officer. We use
-        various third parties to process and store information. It is Our
-        responsibility to ensure that the written contract with the outside
-        party will afford a comparable level of protection while such third
-        party is processing the personal information. This will usually mean the
-        provision of a copy of this policy to such third party and the written
-        acknowledgement from such third party that it will be bound by the
-        policy. Further provisions include the return of all personal
-        information to us upon completion, an agreement not to use such
-        information except for the purposes of us, and the destruction of any
-        remaining records in the possession of the third party. Finally the
-        third party must agree to advise us immediately of any concerns, or
-        objections expressed, relating to personal information of our clients
-        and employees. We are committed to ensuring that the appropriate
-        security measures are employed in the transfer of sensitive information.
-        However, in relation to e-mail or wireless communication, complete
-        confidentiality and security is not assured. We are not accountable for
-        any damages suffered when a customer or employee transmits personal
-        information through e-mail or wireless communication or when We transmit
-        personal information to a client on request. SECTION 2 - Identifying the
-        Purposes of Personal Information There are certain specific reasons why
-        we need to collect information about you: Besides your name, address and
-        telephone number, we need information to: understand your needs and
-        eligibility for products and services recommend particular products and
-        services that are suitable to you maintain appropriate levels of service
-        establish your identity and provide contact information for you protect
-        you and us from error and fraud comply with legal and regulatory
-        requirements When opening an interest bearing or investment account, the
-        Income Tax Act and other obligations require us to ask for your Social
-        Insurance Number or other tax identification number When opening an
-        account that may hold U.S. securities or has U.S. beneficial owners, we
-        have contractual obligations with the U.S. Internal Revenue Service to
-        ask for U.S. Taxpayer Identification Numbers and/or other citizenship or
-        residential identification information When opening an account, in order
-        to assess your creditworthiness we ask you for certain financial
-        information. For this reason, we may contact other lenders or credit
-        bureaus to give us information on your credit history For our employees
-        - to provide benefits and manage the employment relationship We may
-        review and analyze your use of products and services, including
-        transactions in your accounts, to help protect you from unauthorized use
-        of your accounts, to help us serve you better, to comply with our own
+        OUR COMMITMENT TO PRIVACY PROTECTION At DARWWIN and at our subsidiaries
+        (collectively “We”, “Our” or “Us”), an important part of our commitment
+        to provide you with service excellence is our respect for your right to
+        privacy. Keeping our customers' and employees’ information and affairs
+        in strict confidence is a cornerstone of our business. The range of
+        products and services we offer our customers continues to expand, and
+        the technology we use continues to change. But, no matter how our
+        business changes, we will always protect your privacy. The policies and
+        procedures which we practice in order to protect your privacy are in
+        place across our firm. In the following pages we describe these policies
+        and procedures and how we put them into practice so that you have
+        control over how we collect, use and disclose your personal information.
+        Protecting Your Privacy Means: We keep your personal information and the
+        business you do with us in strict confidence Your personal information
+        is not sold to, rented to, leased to, or shared with, third parties
+        without your consent You have control over how we obtain, uses, and
+        gives out personal information about you You have access to the personal
+        information we have about you We respect your privacy when we market our
+        products and services SECTION 1 - Accountability We are accountable for
+        the protection of your personal information. While senior management is
+        ultimately accountable for the protection of that information, the
+        day-to-day monitoring for compliance may be delegated to staff. While we
+        have procedures in place to assist our employees in the practice of our
+        privacy policies, the overall responsibility for the protection of
+        personal information, and compliance with this policy rests with Our
+        Privacy Officer. We use various third parties to process and store
+        information. It is Our responsibility to ensure that the written
+        contract with the outside party will afford a comparable level of
+        protection while such third party is processing the personal
+        information. This will usually mean the provision of a copy of this
+        policy to such third party and the written acknowledgement from such
+        third party that it will be bound by the policy. Further provisions
+        include the return of all personal information to us upon completion, an
+        agreement not to use such information except for the purposes of us, and
+        the destruction of any remaining records in the possession of the third
+        party. Finally the third party must agree to advise us immediately of
+        any concerns, or objections expressed, relating to personal information
+        of our clients and employees. We are committed to ensuring that the
+        appropriate security measures are employed in the transfer of sensitive
+        information. However, in relation to e-mail or wireless communication,
+        complete confidentiality and security is not assured. We are not
+        accountable for any damages suffered when a customer or employee
+        transmits personal information through e-mail or wireless communication
+        or when We transmit personal information to a client on request. SECTION
+        2 - Identifying the Purposes of Personal Information There are certain
+        specific reasons why we need to collect information about you: Besides
+        your name, address and telephone number, we need information to:
+        understand your needs and eligibility for products and services
+        recommend particular products and services that are suitable to you
+        maintain appropriate levels of service establish your identity and
+        provide contact information for you protect you and us from error and
+        fraud comply with legal and regulatory requirements When opening an
+        interest bearing or investment account, the Income Tax Act and other
+        obligations require us to ask for your Social Insurance Number or other
+        tax identification number When opening an account that may hold U.S.
+        securities or has U.S. beneficial owners, we have contractual
+        obligations with the U.S. Internal Revenue Service to ask for U.S.
+        Taxpayer Identification Numbers and/or other citizenship or residential
+        identification information When opening an account, in order to assess
+        your creditworthiness we ask you for certain financial information. For
+        this reason, we may contact other lenders or credit bureaus to give us
+        information on your credit history For our employees - to provide
+        benefits and manage the employment relationship We may review and
+        analyze your use of products and services, including transactions in
+        your accounts, to help protect you from unauthorized use of your
+        accounts, to help us serve you better, to comply with our own
         supervisory requirements, and to bring other products and services to
         your attention which we feel will be of benefit to you. In this regard
         We may monitor telephone communications from time-to-time. We collect,
@@ -255,7 +255,7 @@ const PrivacyPolicy = ({ handleClose }: { handleClose: any }) => {
         resolved in a timely manner. Should you not be able to accept Our
         conclusion, or any time in the process, you may also write to the
         provincial Privacy Commissioner, or if applicable, the Privacy
-        Commissioner of Crypto Trust. we will provide you with this contact
+        Commissioner of DARWWIN. we will provide you with this contact
         information upon request. Our current Privacy Policy is also available
         on our website at xxxxxxxx SECTION 11 - Amendments and Changes From time
         to time we may make changes to this policy to adapt to changing business

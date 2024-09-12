@@ -3,8 +3,8 @@ import createEmotionServer from '@emotion/server/create-instance';
 import createEmotionCache from 'createEmotionCache';
 
 const url = '';
-const title = 'CRYPTO TRUST';
-const description = 'NFT APP | CRYPTO TRUST';
+const title = 'DARWWIN';
+const description = 'NFT APP | DARWWIN';
 
 export default class MyDocument extends Document {
   render() {

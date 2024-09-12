@@ -71,7 +71,7 @@ export const calculateTokens = (
 
         // ⑥支払い枚数 = 各銘柄の手数料を差し引いた金額 * 支払い手数料率（5%)
         const paymentAmount = Number(currentAmountWithoutFee)
-          //  CRYPTO TRUSTではここでPAYMENT_FEE_PERCENTAGEをかけない
+          //  DARWWINではここでPAYMENT_FEE_PERCENTAGEをかけない
           // * PAYMENT_FEE_PERCENTAGE
           .toFixed(Number(decimalPlace));
 

@@ -317,7 +317,7 @@ const UserTable = () => {
     const url = window.URL.createObjectURL(blob);
     const a = document.createElement('a');
     a.href = url;
-    a.download = 'cryptotrust_nftdata.' + format; //フォーマットによってファイル拡張子を変えている
+    a.download = 'darwwin_nftdata.' + format; //フォーマットによってファイル拡張子を変えている
     a.click();
     a.remove();
   };

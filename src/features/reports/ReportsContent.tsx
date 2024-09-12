@@ -234,7 +234,7 @@ const ReportsContent = () => {
   return (
     <>
       <Head>
-        <title>CRYPTO TRUST Dashboard - Affiliate Reward</title>
+        <title>DARWWIN Dashboard - Affiliate Reward</title>
       </Head>
       <PageHeaderWrapper>
         <PageHeader
