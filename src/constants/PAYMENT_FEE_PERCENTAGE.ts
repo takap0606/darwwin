@@ -1,0 +1,1 @@
+export const PAYMENT_FEE_PERCENTAGE = 0.95;
