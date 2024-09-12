@@ -120,24 +120,9 @@ function Hero() {
           <Typography fontSize="1.8rem" color="#fff" fontWeight="bold">
             DARWWIN NFT ROADMAP
           </Typography>
-          <ListItemWrapper sx={{ mt: 2, mb: 2 }}>
-            <NftImageAvatar>
-              <img src="/static/images/hero/roadmap1.jpg" alt="" />
-            </NftImageAvatar>
-            <Typography variant="h6">
-              <b>STEP1 </b>
-              <Typography component="span" variant="subtitle2">
-                {' '}
-                <br />
-                - Launch of DARWWIN collection
-                <br />
-                - Partnership with DARWWIN
-                <br />
-              </Typography>
-            </Typography>
-          </ListItemWrapper>
           <ListItemWrapper
             sx={{
+              mt: 2,
               mb: 2,
             }}
           >
@@ -145,7 +130,7 @@ function Hero() {
               <img src="/static/images/hero/roadmap2.jpg" alt="" />
             </NftImageAvatar>
             <Typography variant="h6">
-              <b>STEP2 </b>
+              <b>STEP1 </b>
               <Typography component="span" variant="subtitle2">
                 {' '}
                 <br />
@@ -165,7 +150,7 @@ function Hero() {
               <img src="/static/images/hero/roadmap4.jpg" alt="" />
             </NftImageAvatar>
             <Typography variant="h6">
-              <b>STEP3 </b>
+              <b>STEP2 </b>
               <Typography component="span" variant="subtitle2">
                 {' '}
                 <br />
@@ -183,7 +168,7 @@ function Hero() {
               <img src="/static/images/hero/roadmap3.jpg" alt="" />
             </NftImageAvatar>
             <Typography variant="h6">
-              <b>STEP4 </b>
+              <b>STEP3 </b>
               <Typography component="span" variant="subtitle2">
                 {' '}
                 <br />
@@ -197,7 +182,7 @@ function Hero() {
           <BoxContent>
             <Box>
               <ImgWrapper>
-                <img src="/static/images/hero/frontend.svg" alt="" />
+                <img src="/static/images/hero/frontend.png" alt="" />
               </ImgWrapper>
             </Box>
             <BoxAccent

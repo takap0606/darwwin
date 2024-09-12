@@ -117,7 +117,7 @@ const Home: NextPage = () => {
                     <Button
                       onClick={signIn}
                       variant="contained"
-                      sx={{ ml: 2, color: '#fff' }}
+                      sx={{ ml: 2, color: '#121214' }}
                       disabled={isLoading}
                     >
                       {isLoading ? (
@@ -132,7 +132,7 @@ const Home: NextPage = () => {
                     <Button
                       onClick={goToDashboard}
                       variant="contained"
-                      sx={{ ml: 2, color: '#fff' }}
+                      sx={{ ml: 2, color: '#121214' }}
                       disabled={isLoading}
                     >
                       {isLoading ? (
