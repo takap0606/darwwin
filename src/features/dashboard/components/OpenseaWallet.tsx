@@ -229,7 +229,7 @@ function OpenseaWallet({ tokens }: any) {
       >
         <Box display="flex">
           <Button onClick={handleMoveX2Y2Store} size="small" variant="outlined">
-            {'Buy v1 NFTs'}
+            {'Buy NFTs'}
           </Button>
         </Box>
       </Box>

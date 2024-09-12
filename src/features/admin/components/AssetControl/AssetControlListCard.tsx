@@ -60,6 +60,8 @@ const style = {
   border: '2px solid #000',
   boxShadow: 24,
   p: 4,
+  background:
+    'linear-gradient(180deg,rgba(35,30,33,.8),rgba(21,25,28,.99)),#171a1e',
 };
 
 const AssetControlListCard = ({

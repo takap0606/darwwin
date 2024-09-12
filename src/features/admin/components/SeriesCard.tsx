@@ -63,6 +63,8 @@ const style = {
   border: '2px solid #000',
   boxShadow: 24,
   p: 4,
+  background:
+    'linear-gradient(180deg,rgba(35,30,33,.8),rgba(21,25,28,.99)),#171a1e',
 };
 
 const SeriesCard = ({ nft, selectedPortfolio, setUpdated, updated }: any) => {
@@ -232,7 +234,7 @@ const SeriesCard = ({ nft, selectedPortfolio, setUpdated, updated }: any) => {
               </TableCell>
               <TableCell align="center">
                 <Box>
-                  <LabelSuccess>{nft?.activeStatus}</LabelSuccess>
+                  <LabelSuccess>{nft?.active_status}</LabelSuccess>
                 </Box>
               </TableCell>
               <TableCell align="center">
@@ -440,12 +442,12 @@ const SeriesCard = ({ nft, selectedPortfolio, setUpdated, updated }: any) => {
                 Operation Status
               </InputLabel>
               <Select
-                name="activeStatus"
+                name="active_status"
                 labelId="demo-simple-select-label"
                 id="demo-simple-select"
                 label="active status"
                 onChange={formik.handleChange}
-                defaultValue={nft?.activeStatus}
+                defaultValue={nft?.active_status}
               >
                 <MenuItem value="inOperation">In Operation</MenuItem>
                 <MenuItem value="suspended">Suspended</MenuItem>

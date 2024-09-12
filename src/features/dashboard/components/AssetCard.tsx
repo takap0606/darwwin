@@ -69,29 +69,25 @@ img {
 
 const ImageWrapper = styled(Box)(
   ({ theme }) => `
-    margin: ${theme.spacing(2, 0, 1, -0.5)};
     display: flex;
     align-items: center;
     justify-content: center;
     margin-right: ${theme.spacing(1)};
     padding: ${theme.spacing(0.5)};
-    border-radius: 60px;
-    height: ${theme.spacing(12)};
-    width: ${theme.spacing(12)};
+    width: 100%;
+    height: auto;
     background: ${
       theme.palette.mode === 'dark'
         ? theme.colors.alpha.trueWhite[30]
         : alpha(theme.colors.alpha.black[100], 0.07)
     };
-    -webkit-animation: glow 2s linear 0s infinite alternate;
 
     img {
     background: ${theme.colors.alpha.trueWhite[100]};
     padding: ${theme.spacing(0.5)};
     display: block;
-    border-radius: inherit;
-    height: ${theme.spacing(11)};
-    width: ${theme.spacing(11)};
+    width: 100%;
+    height: auto;
     }
 `,
 );
@@ -343,15 +339,20 @@ const AssetCard = ({
 
   return (
     <>
-      <Card>
+      <Card
+        sx={{
+          background:
+            'linear-gradient(180deg,rgba(35,30,33,.8),rgba(21,25,28,.99)),#171a1e',
+        }}
+      >
         <Grid spacing={0} container>
           <Grid item xs={12} md={4}>
-            <Box p={3}>
+            <Box p={2}>
               <Box>
                 <ImageWrapper className="glow-animation">
                   <img src={image} alt="" />
                 </ImageWrapper>
-                <Box className="details">
+                <Box className="details" mt={1}>
                   <Box display="flex" alignItems="center">
                     <Typography variant="h5" noWrap mr={1}>
                       {name}{' '}
@@ -366,25 +367,42 @@ const AssetCard = ({
                       pt: 3,
                     }}
                   >
-                    <Typography variant="h4" gutterBottom noWrap>
-                      Invested Asset:
-                      <br /> {asset_eth_price} ETH ({last_sale_usd_price} USD)
-                    </Typography>
-                    <Typography variant="h4" gutterBottom noWrap>
-                      Current Asset Price:
-                      <br />{' '}
-                      {isLoading ? (
-                        <Box mt={1}>
-                          <Skeleton
-                            variant="rectangular"
-                            width={200}
-                            height={20}
-                          />
-                        </Box>
-                      ) : (
-                        <>{current_asset_price} USD</>
-                      )}
-                    </Typography>
+                    <Box
+                      sx={{
+                        display: 'flex',
+                        justifyContent: 'space-between',
+                      }}
+                    >
+                      <Typography variant="h5" gutterBottom noWrap>
+                        Invested
+                      </Typography>
+                      <Typography variant="h5" gutterBottom noWrap>
+                        {asset_eth_price} ETH ({last_sale_usd_price} USD)
+                      </Typography>
+                    </Box>
+                    <Box
+                      sx={{
+                        display: 'flex',
+                        justifyContent: 'space-between',
+                      }}
+                    >
+                      <Typography variant="h5" gutterBottom noWrap>
+                        Current
+                      </Typography>
+                      <Typography variant="h5" gutterBottom noWrap>
+                        {isLoading ? (
+                          <Box mt={1}>
+                            <Skeleton
+                              variant="rectangular"
+                              width={200}
+                              height={20}
+                            />
+                          </Box>
+                        ) : (
+                          <>{current_asset_price} USD</>
+                        )}
+                      </Typography>
+                    </Box>
                   </Box>
                   {created_at !== null && (
                     <Box
@@ -438,7 +456,6 @@ const AssetCard = ({
                   : { xs: 'none', md: 'flex' },
             }}
             position="relative"
-            alignItems="center"
             item
             xs={12}
             md={8}
@@ -550,7 +567,7 @@ const AssetCard = ({
                     ''
                   )}
                 </Grid>
-                <Grid xs={12} sm={6} item display="flex" alignItems="center">
+                <Grid xs={12} sm={6} item display="flex">
                   <List
                     disablePadding
                     sx={{

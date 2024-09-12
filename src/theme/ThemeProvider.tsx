@@ -9,11 +9,11 @@ type Props = {
 export const ThemeContext = createContext((_themeName: string): void => {});
 
 const ThemeProviderWrapper: FC<Props> = (props) => {
-  const [themeName, _setThemeName] = useState('NebulaFighterTheme');
+  const [themeName, _setThemeName] = useState('DarwwinTheme');
 
   useEffect(() => {
     const curThemeName =
-      window.localStorage.getItem('appTheme') || 'NebulaFighterTheme';
+      window.localStorage.getItem('appTheme') || 'DarwwinTheme';
     _setThemeName(curThemeName);
   }, []);
 

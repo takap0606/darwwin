@@ -217,7 +217,7 @@ const NftCurrentPriceTable = () => {
         { header: 'Number', key: 'number' },
         { header: 'ID', key: 'id' },
         { header: 'Set Date', key: 'fixed_created_at' },
-        { header: 'Status', key: 'activeStatus' },
+        { header: 'Status', key: 'active_status' },
         { header: 'Owner Wallet Address', key: 'owner_wallet_address' },
         { header: 'Last sale ETH price', key: 'last_sale_eth_price' },
         { header: 'Last sale USD price', key: 'last_sale_usd_price' },

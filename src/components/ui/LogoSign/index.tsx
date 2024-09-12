@@ -52,13 +52,13 @@ function Logo() {
       {!isLoading && user ? (
         <LogoWrapper href={href}>
           <LogoSignWrapper>
-            <img src="/static/cryptotrust_logo.svg" alt="" width={'42px'} />
+            <img src="/static/darwwin_logo_square.png" alt="" width={'42px'} />
           </LogoSignWrapper>
         </LogoWrapper>
       ) : (
         <LogoWrapper href="/">
           <LogoSignWrapper>
-            <img src="/static/cryptotrust_logo.svg" alt="" width={'42px'} />
+            <img src="/static/darwwin_logo_square.png" alt="" width={'42px'} />
           </LogoSignWrapper>
         </LogoWrapper>
       )}

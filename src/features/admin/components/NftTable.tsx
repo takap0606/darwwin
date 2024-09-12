@@ -147,6 +147,8 @@ const style = {
   border: '2px solid #000',
   boxShadow: 24,
   p: 4,
+  background:
+    'linear-gradient(180deg,rgba(35,30,33,.8),rgba(21,25,28,.99)),#171a1e',
 };
 
 const searchClient = algoliasearch(
@@ -259,7 +261,7 @@ const Hit = ({ hit }: any) => {
             </TableCell>
             <TableCell align="center">
               <Box>
-                <LabelSuccess>{hit.activeStatus}</LabelSuccess>
+                <LabelSuccess>{hit.active_status}</LabelSuccess>
               </Box>
             </TableCell>
             <TableCell align="center">
@@ -506,7 +508,7 @@ const UserTable = () => {
         { header: 'Number', key: 'number' },
         { header: 'ID', key: 'id' },
         { header: 'Set Date', key: 'fixed_created_at' },
-        { header: 'Status', key: 'activeStatus' },
+        { header: 'Status', key: 'active_status' },
         { header: 'Owner Wallet Address', key: 'owner_wallet_address' },
         { header: 'Last sale ETH price', key: 'last_sale_eth_price' },
         { header: 'Last sale USD price', key: 'last_sale_usd_price' },

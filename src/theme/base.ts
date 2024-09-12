@@ -2,7 +2,7 @@ import React from 'react';
 
 import { Theme } from '@mui/material';
 import { NebulaFighterTheme } from './schemes/NebulaFighterTheme';
-import { GoldTheme } from './schemes/GoldTheme';
+import { DarwwinTheme } from './schemes/DarwwinTheme';
 import { GreenFieldsTheme } from './schemes/GreenFieldsTheme';
 
 export function themeCreator(theme: string): Theme {
@@ -252,6 +252,6 @@ declare module '@mui/material/styles' {
 
 const themeMap: { [key: string]: Theme } = {
   NebulaFighterTheme,
-  GoldTheme,
+  DarwwinTheme,
   GreenFieldsTheme,
 };

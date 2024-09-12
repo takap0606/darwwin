@@ -91,7 +91,7 @@ function Hero() {
       >
         <Grid item md={6} pr={{ xs: 0, md: 3 }}>
           <HeroLogoImage mb={2} pr={8} maxWidth="500px" display="block">
-            <img src="/static/images/hero/hero_title.svg" alt="" />
+            <img src="/static/images/hero/hero_title.png" alt="" />
           </HeroLogoImage>
           <TypographyH2
             sx={{
@@ -118,7 +118,7 @@ function Hero() {
             value of NFTs. Start your journey with us today!
           </TypographyH2>
           <Typography fontSize="1.8rem" color="#fff" fontWeight="bold">
-            LUPPY NFT ROADMAP
+            DARWWIN NFT ROADMAP
           </Typography>
           <ListItemWrapper sx={{ mt: 2, mb: 2 }}>
             <NftImageAvatar>
@@ -129,7 +129,7 @@ function Hero() {
               <Typography component="span" variant="subtitle2">
                 {' '}
                 <br />
-                - Launch of LUPPY collection
+                - Launch of DARWWIN collection
                 <br />
                 - Partnership with DARWWIN
                 <br />
@@ -170,7 +170,7 @@ function Hero() {
                 {' '}
                 <br />
                 - Metaverse
-                <br />- LUPPY Figure Collection
+                <br />- DARWWIN Figure Collection
               </Typography>
             </Typography>
           </ListItemWrapper>

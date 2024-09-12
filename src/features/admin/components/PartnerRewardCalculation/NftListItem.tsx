@@ -92,7 +92,7 @@ const NftListItem = ({ nft }: any) => {
         )}
         <TableCell align="center">
           <Box>
-            <LabelSuccess>{nft?.activeStatus}</LabelSuccess>
+            <LabelSuccess>{nft?.active_status}</LabelSuccess>
           </Box>
         </TableCell>
         <TableCell align="center">

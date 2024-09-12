@@ -463,7 +463,13 @@ const UserlistTotalContent = () => {
           >
             <Typography variant="h3">User list</Typography>
           </Box>
-          <Card sx={{ px: 1 }}>
+          <Card
+            sx={{
+              px: 1,
+              background:
+                'linear-gradient(180deg,rgba(35,30,33,.8),rgba(21,25,28,.99)),#171a1e',
+            }}
+          >
             <CardContent>
               <Box>
                 NP: NFT Points / Common(1), Uncommon(5), Rare(10), Super

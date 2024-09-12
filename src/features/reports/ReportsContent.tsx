@@ -263,7 +263,12 @@ const ReportsContent = () => {
             minHeight="60vh"
           >
             <Grid item xs={12} md={12}>
-              <Card>
+              <Card
+                sx={{
+                  background:
+                    'linear-gradient(180deg,rgba(35,30,33,.8),rgba(21,25,28,.99)),#171a1e',
+                }}
+              >
                 <Box
                   display="flex"
                   alignItems="center"

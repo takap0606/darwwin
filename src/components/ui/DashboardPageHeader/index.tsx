@@ -88,7 +88,7 @@ const DashboardPageHeader = () => {
           !
         </Typography>
         <Typography variant="subtitle2">
-          {'Today is a good day to start asset management'}
+          {'Today is a great day to begin managing your assets.'}
         </Typography>
       </Grid>
     </Grid>

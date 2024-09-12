@@ -258,7 +258,7 @@ const AssetControlFormBySeries = ({ series }: { series: string }) => {
                       const q = query(
                         collection(db, 'nfts'),
                         where('series', '==', series),
-                        where('activeStatus', '==', 'inOperation'),
+                        where('active_status', '==', 'inOperation'),
                       );
 
                       const querySnapshot = await getDocs(q);

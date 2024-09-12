@@ -50,6 +50,8 @@ const style = {
   border: '2px solid #000',
   boxShadow: 24,
   p: 4,
+  background:
+    'linear-gradient(180deg,rgba(35,30,33,.8),rgba(21,25,28,.99)),#171a1e',
 };
 
 const ImageWrapper = styled(Box)(
@@ -291,7 +293,7 @@ const ProfileContent = () => {
           const querySnapshot = await getDocs(q);
           const nftList = querySnapshot.docs.map((doc) => ({
             uid: doc.id,
-            activeStatus: doc.data().activeStatus,
+            active_status: doc.data().active_status,
             id: doc.data().id,
             image: doc.data().image,
             name: doc.data().name,
@@ -361,7 +363,13 @@ const ProfileContent = () => {
           </Grid>
           <Grid container spacing={2}>
             <Grid item xs={12} md={4}>
-              <Card variant="outlined">
+              <Card
+                sx={{
+                  px: 1,
+                  background:
+                    'linear-gradient(180deg,rgba(35,30,33,.8),rgba(21,25,28,.99)),#171a1e',
+                }}
+              >
                 <CardHeader
                   sx={{
                     p: 2,

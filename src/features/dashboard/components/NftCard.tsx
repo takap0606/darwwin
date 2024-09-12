@@ -34,15 +34,13 @@ import { PORTFOLIO_OPTION } from '../constants/PORTFOLIO_OPTION';
 
 const ImageWrapper = styled(Box)(
   ({ theme }) => `
-    margin: ${theme.spacing(2, 0, 1, -0.5)};
     display: flex;
     align-items: center;
     justify-content: center;
     margin-right: ${theme.spacing(1)};
     padding: ${theme.spacing(0.5)};
-    border-radius: 60px;
-    height: ${theme.spacing(12)};
-    width: ${theme.spacing(12)};
+    width: 100%;
+    height: auto;
     background: ${
       theme.palette.mode === 'dark'
         ? theme.colors.alpha.trueWhite[30]
@@ -53,9 +51,8 @@ const ImageWrapper = styled(Box)(
     background: ${theme.colors.alpha.trueWhite[100]};
     padding: ${theme.spacing(0.5)};
     display: block;
-    border-radius: inherit;
-    height: ${theme.spacing(11)};
-    width: ${theme.spacing(11)};
+    width: 100%;
+    height: auto;
     }
 `,
 );
@@ -95,6 +92,8 @@ const style = {
   border: '2px solid #000',
   boxShadow: 24,
   p: 4,
+  background:
+    'linear-gradient(180deg,rgba(35,30,33,.8),rgba(21,25,28,.99)),#171a1e',
 };
 
 type Props = {
@@ -107,6 +106,7 @@ type Props = {
 };
 
 const getPortfolioOptions = (platform?: string, version?: string) => {
+  // FIXME
   if (platform === 'opensea' && version === 'luppyclubofficial') {
     return PORTFOLIO_OPTION.filter(
       (portfolio) => portfolio.series >= 'A' && portfolio.series <= 'E',
@@ -233,14 +233,19 @@ const NftCard: FC<Props> = ({
   return (
     <>
       <Grid xs={12} sm={6} md={3} item>
-        <Card sx={{ px: 1 }}>
+        <Card
+          sx={{
+            background:
+              'linear-gradient(180deg,rgba(35,30,33,.8),rgba(21,25,28,.99)),#171a1e',
+          }}
+        >
           <CardContent>
             <Box>
               <Box>
                 <ImageWrapper>
                   <img src={image} alt="" />
                 </ImageWrapper>
-                <Box className="details">
+                <Box className="details" mt={1}>
                   <Typography variant="h5" noWrap>
                     {name}
                   </Typography>
@@ -254,12 +259,20 @@ const NftCard: FC<Props> = ({
                       pt: 3,
                     }}
                   >
-                    <Typography variant="h4" gutterBottom noWrap>
-                      Invested Asset:
-                      <br />
-                      {last_sale.fixedPrice} ETH ({' '}
-                      {last_sale.fixed_usd_base_investment_amount} USD )
-                    </Typography>
+                    <Box
+                      sx={{
+                        display: 'flex',
+                        justifyContent: 'space-between',
+                      }}
+                    >
+                      <Typography variant="h5" gutterBottom noWrap>
+                        Invested
+                      </Typography>
+                      <Typography variant="h5" gutterBottom noWrap>
+                        {last_sale.fixedPrice} ETH ({' '}
+                        {last_sale.fixed_usd_base_investment_amount} USD )
+                      </Typography>
+                    </Box>
                   </Box>
                 </Box>
                 <Grid mt={2}>

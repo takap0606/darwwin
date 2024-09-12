@@ -28,6 +28,7 @@ const HeaderWrapper = styled(Card)(
   height: ${theme.spacing(10)};
   margin-bottom: ${theme.spacing(10)};
   border-radius: 0;
+  background-color: ${theme.header.background};
 `,
 );
 

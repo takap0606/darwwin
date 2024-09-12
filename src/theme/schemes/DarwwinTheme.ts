@@ -4,7 +4,7 @@ import type {} from '@mui/lab/themeAugmentation';
 // import i18n from 'src/i18n/i18n';
 
 const themeColors = {
-  primary: '#d3c090',
+  primary: '#f7a600',
   secondary: '#a2a8ab',
   success: '#57CA22',
   warning: '#FFA319',
@@ -12,7 +12,7 @@ const themeColors = {
   info: '#33C2FF',
   black: '#CBCCD2',
   white: '#000',
-  primaryAlt: '#000',
+  primaryAlt: '#16171a',
   trueWhite: '#ffffff',
 };
 
@@ -131,7 +131,7 @@ const colors = {
   },
 };
 
-export const GoldTheme = createTheme({
+export const DarwwinTheme = createTheme({
   // direction: i18n.dir(),
   colors: {
     gradients: {
