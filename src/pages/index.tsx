@@ -123,7 +123,7 @@ const Home: NextPage = () => {
                       {isLoading ? (
                         <CircularProgress color="inherit" size={24} />
                       ) : (
-                        'Log in Affiliates'
+                        'Log in'
                       )}
                     </Button>
                   </Box>

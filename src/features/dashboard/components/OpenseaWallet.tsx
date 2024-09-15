@@ -90,7 +90,6 @@ function OpenseaWallet({ tokens }: any) {
 
           const x2y2CollectionSlugs = [
             '0xf532e895f1fb80ce4bc1bb88c2887d35e764c5d4', // BITBULL
-            // '0x1180f09c2f76924280cb54ae205efa7b06c03c04', // TEST
           ];
 
           let openSeaAssets: any[] = [];
