@@ -18,7 +18,7 @@ const AdminNftUpdateData = () => {
       registeredDate: '',
       imageUrl: '',
       invitationCode: '',
-      rate: 0,
+      rate: '0.00',
     };
     setUserInfo(data);
   }, [user]);

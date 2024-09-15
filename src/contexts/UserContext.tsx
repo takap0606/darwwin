@@ -14,7 +14,7 @@ export type User = {
   registeredDate: string | undefined;
   imageUrl: string | undefined;
   invitationCode: string | undefined;
-  rate: number | undefined;
+  rate: string | undefined;
 };
 
 type UserContext = {
@@ -37,7 +37,7 @@ export const UserProvider = ({ children }: Props) => {
     registeredDate: '',
     imageUrl: '',
     invitationCode: '',
-    rate: 0,
+    rate: '0.00',
   });
 
   return (

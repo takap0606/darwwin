@@ -54,14 +54,16 @@ function SidebarTopSection() {
       >
         {userInfo.nickname}
       </Typography>
-      <Typography
-        variant="subtitle1"
-        sx={{
-          color: `${theme.colors.alpha.trueWhite[70]}`,
-        }}
-      >
-        RATE: {(userInfo.rate ? userInfo.rate * 100 : 0).toFixed(0)}%
-      </Typography>
+      {userInfo.rate !== '0.00' && (
+        <Typography
+          variant="subtitle1"
+          sx={{
+            color: `${theme.colors.alpha.trueWhite[70]}`,
+          }}
+        >
+          RATE: {(userInfo.rate ? Number(userInfo.rate) * 100 : 0).toFixed(0)}%
+        </Typography>
+      )}
     </Box>
   );
 }

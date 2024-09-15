@@ -20,7 +20,7 @@ const AdminNftsDetail = ({ tokenPrice }: { tokenPrice: any }) => {
       registeredDate: '',
       imageUrl: '',
       invitationCode: '',
-      rate: 0,
+      rate: '0.00',
     };
     setUserInfo(data);
   }, [user]);

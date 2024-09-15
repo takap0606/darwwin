@@ -116,7 +116,7 @@ function HeaderUserbox() {
     wallet_address: '',
     image_url: '',
     invitation_code: '',
-    rate: 0,
+    rate: '0.00',
   });
 
   useEffect(() => {
@@ -213,9 +213,11 @@ function HeaderUserbox() {
             ))}
           <UserBoxText>
             <UserBoxLabel variant="body1">{account.nickname}</UserBoxLabel>
-            <UserBoxDescription variant="body2">
-              RATE: {(account.rate * 100).toFixed(0)}%
-            </UserBoxDescription>
+            {account.rate !== '0.00' && (
+              <UserBoxDescription variant="body2">
+                RATE: {(Number(account.rate) * 100).toFixed(0)}%
+              </UserBoxDescription>
+            )}
           </UserBoxText>
         </MenuUserBox>
         <Divider
