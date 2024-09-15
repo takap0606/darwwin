@@ -76,20 +76,33 @@ const NftCard: FC<Props> = ({
   const { db } = useFirebase();
   const [alreadySet, setAlreadySet] = useState(false);
   const [level, setLevel] = useState('');
+  const [nftPoint, setNftPoint] = useState('');
 
   const checkRarity = () => {
-    if (name.trim().startsWith('BITBULL')) {
+    // #で区切り、前半部分を取得し、スペースを正規化
+    const namePrefix = name.split('#')[0].trim().replace(/\s+/g, ' ');
+
+    if (namePrefix.startsWith('BITBULL')) {
       setLevel('common');
-    } else if (name.trim().startsWith('CYBER PUNK BULL')) {
+      setNftPoint('1');
+    } else if (namePrefix.startsWith('CYBER PUNK BULL')) {
       setLevel('uncommon');
-    } else if (name.trim().startsWith('GOLD BULL')) {
+      setNftPoint('5');
+    } else if (namePrefix.startsWith('GOLD BULL')) {
       setLevel('rare');
-    } else if (name.trim().startsWith('BLACK GOLD BULL')) {
+      setNftPoint('10');
+    } else if (namePrefix.startsWith('BLACK GOLD BULL')) {
       setLevel('super_rare');
+      setNftPoint('30');
     } else {
       setLevel('');
+      setNftPoint('');
     }
   };
+
+  console.log('level', level);
+  console.log('name', name);
+
   const setNft = () => {
     const values = {
       id: id,
@@ -100,6 +113,7 @@ const NftCard: FC<Props> = ({
       owner_wallet_address: userInfo.walletAddress,
       series: 'A',
       level: level,
+      nft_points: nftPoint,
       platform: platform,
       created_at: serverTimestamp(),
     };
@@ -128,6 +142,9 @@ const NftCard: FC<Props> = ({
           }}
         >
           <CardContent>
+            {level}
+            <br />
+            {name}
             <Box>
               <Box>
                 <ImageWrapper>
