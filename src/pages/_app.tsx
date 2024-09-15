@@ -28,7 +28,7 @@ const App = (props: MyAppProps) => {
 
   return (
     <ThirdwebProvider
-      clientId="4e50c199b7a30d06f950ffd0c04ecbee"
+      clientId="785d3b6f9dd65654f576487a7c01c9a2"
       activeChain={ChainId.Mainnet}
       authConfig={{
         authUrl: '/api/auth/login',

@@ -19,8 +19,7 @@ const TermsOfUse = () => {
       regarding the use of the Service.
       <br />
       2.The rules regarding the use of the Service posted by the Company on its
-      website https:// www.crypto-trust.io/ constitute a part of these Terms of
-      Use.
+      website https:// www.darwwin.io/ constitute a part of these Terms of Use.
       <br />
       3. In the event of any discrepancy between the contents of this Terms of
       Use and the rules and other explanations of the Service, etc. outside of
@@ -37,26 +36,32 @@ const TermsOfUse = () => {
       2) "Intellectual Property Rights" means copyrights, patents, utility model
       rights, design rights, trademarks, and other intellectual property rights
       (including the right to acquire such rights or to apply for registration
-      of such rights). <br />
+      of such rights).
+      <br />
       3) "Registered User" means an individual, corporation or organization that
       has been registered as a user of the Service in accordance with Article 3
-      (Registration). <br />
+      (Registration).
+      <br />
       4) "Service" means the service named "DARWWIN" provided by the Company.
       (In the event that the name or content of the service is changed for any
-      reason, this includes the service after such change. <br />
+      reason, this includes the service after such change.
+      <br />
       5) "Service Usage Contract" means a contract for the use of the Service
       between the Company and a Registered User, which is concluded under the
-      terms and conditions of this Terms of Use. <br />
-      6) "Website" means the website operated by us whose domain is [crypto-
-      trust.io/] (if the domain or content of our website is changed for any
+      terms and conditions of this Terms of Use.
+      <br />
+      6) "Website" means the website operated by us whose domain is
+      [darwwin.io/] (if the domain or content of our website is changed for any
       reason, including the website after such change).
       <br />
       <br />
-      Article 3 (Registration) <br />
+      Article 3 (Registration)
+      <br />
       1. A person who wishes to use the Service ("Prospective User") may apply
       to register to use the Service by agreeing to abide by these Terms of Use
       and by providing certain information as determined by the Company
-      (hereinafter referred to as the "Registration Items"). <br />
+      (hereinafter referred to as the "Registration Items").
+      <br />
       2. In accordance with the Company's standards, the Company will, in its
       sole and absolute discretion, determine whether a person who has applied
       for registration in accordance with Section 1 (hereinafter referred to as
@@ -64,107 +69,135 @@ const TermsOfUse = () => {
       approves the registration, the Company will notify the Applicant of such
       approval or disapproval. The registration of the Applicant as a Registered
       User will be completed upon the Company's issuance of the notice in this
-      section. <br />
+      section.
+      <br />
       3. Upon completion of registration as stipulated in the preceding
       paragraph, a service use contract will be established between the
       Registered User and the Company, and the Registered User will be able to
-      use the Service in accordance with these Terms of Use. <br />
+      use the Service in accordance with these Terms of Use.
+      <br />
       4. The Company may refuse registration or re-registration of an applicant
       for any of the following reasons and shall not be obligated to disclose
-      any reason for such refusal. <br />
+      any reason for such refusal.
+      <br />
       (a) In the event of any falsehood, error or omission in all or part of the
-      registration information provided to the Company <br />
+      registration information provided to the Company
+      <br />
       (b) The applicant is a minor, an adult ward, a person under curatorship or
       a person under assistance, and has not obtained the consent, etc. of a
-      legal representative, guardian, conservator, or assistant. <br />
+      legal representative, guardian, conservator, or assistant.
+      <br />
       (c) Antisocial forces, etc. (meaning organized crime groups, members of
       organized crime groups, right-wing groups, antisocial forces, or other
       similar persons. The same shall apply hereinafter) and/or having a
       connection with antisocial forces by providing funds, operation,
-      management. <br />
+      management.
+      <br />
       (d) When the Company determines that the person has violated a contract
-      with the Company in the past or is related to such a person. <br />
+      with the Company in the past or is related to such a person.
+      <br />
       (e) If the applicant has been subjected to any of the measures specified
-      in Article 10. <br />
+      in Article 10.
+      <br />
       (f) Other cases in which the Company deems the registration is not
       appropriate including but not limited to the applicant's breach of Article
       18 (Anti-Bribery and Anti-Corruption) and Article 19 (Anti-Money
       Laundering and Combatting Financing of Terrorism).
       <br />
       <br />
-      Article 4 (Change of Registered Matters) <br />
+      Article 4 (Change of Registered Matters)
+      <br />
       1. Registered Users must notify us without delay of any changes in their
       registered information in a manner determined by us.
       <br />
       <br />
-      Article 5 (Password and User ID Management, etc.) <br />
+      Article 5 (Password and User ID Management, etc.)
+      <br />
       1. Registered Users shall, at their own responsibility, properly manage
-      and store their MetaMask IDs and passwords for the Service and shall not
-      allow any third party to use them, or lend, transfer, change the name of,
-      sell, or otherwise dispose of them. <br />
+      and store their MetaMask or any other compatible wallets IDs and passwords
+      for the Service and shall not allow any third party to use them, or lend,
+      transfer, change the name of, sell, or otherwise dispose of them.
+      <br />
       2.Registered Users are responsible for any damages caused by inadequate
-      management of MetaMask IDs and passwords, errors in use, or use by third
-      parties.
+      management of MetaMask or any other compatible wallets IDs and passwords,
+      errors in use, or use by third parties.
       <br />
       <br />
       Article 6 (Process from Lending NFTs to Selling NFTs.)
       <br />
       1. Registered Users may lend NFTs held by them to the Company by
       connecting their NFTs to DARWWIN's online system via their own MetaMask
-      Wallet ("NFT Lending"). <br />
-      2. At the time of NFT Lending, the User may select from the options
-      specified by the Company a portfolio of crypto assets to be operated by
-      the automated crypto asset management system within DARWWIN. <br />
+      Wallet ("NFT Lending"). 2. At the time of NFT Lending, the User may select
+      from the options specified by the Company a portfolio of crypto assets to
+      be operated by the automated crypto asset management system within
+      DARWWIN.
+      <br />
       3. The User can check the performance of DARWWIN's operations for the
       portfolio corresponding to the NFT being lent on his/her own dashboard on
-      DARWWIN (to be updated weekly). <br />
+      DARWWIN (to be updated per 2 week).
+      <br />
       4. The User may return NFTs at any time via DARWWIN's online page or sell
       them on the external market while they are still on lend to (connected to)
       DARWWIN. There are no fees or other costs associated with these returns or
-      sales. <br />
+      sales.
+      <br />
       5. The User may also sell the NFTs on lend to the DARWWIN in exchange for
       crypto assets in the portfolio operated by the DARWWIN. In this case, the
       sale proceeds will be deducted from the fee (5% of the sale proceeds and
-      20-30% of the profit calculated in USD) specified by the Company in the
-      system in advance. <br />
+      8-15% of the profit calculated in USD) specified by the Company in the
+      system in advance.
+      <br />
       6. The fees in the preceding paragraph may be subject to preferential
       services depending on the User's level of contribution to the Service,
       which is separately specified by the Company.
       <br />
       <br />
-      Article 7 (Prohibited Matters) <br />
+      Article 7 (Prohibited Matters)
+      <br />
       1. In using the Service, Registered Users shall not engage in any of the
       following acts, or any act that the Company deems to fall under any of the
-      following items: <br />
-      (a) actions that violate laws and regulations or are related to criminal
-      acts; <br />
+      following items: (a) actions that violate laws and regulations or are
+      related to criminal acts;
+      <br />
       (b) fraudulent or threatening acts against the Company, other users of the
-      Service, or other third parties; <br />
+      Service, or other third parties;
+      <br />
       (c) acts against public order and morals including but not limited to
-      unlawful acts, bribery, corruption, and money-laundering; <br />
+      unlawful acts, bribery, corruption, and money-laundering;
+      <br />
       (d) infringement on the intellectual property rights, portrait rights,
       rights of privacy, honor, or other rights or interests of the Company,
-      other users of the Service, or other third parties; <br />
+      other users of the Service, or other third parties;
+      <br />
       (e) transmitting information to us or other users of the Service through
       the Service that falls under or is deemed by us to fall under any of the
       following:
-      <br />● information containing excessively violent or cruel expressions;
-      <br />● information containing computer viruses or other harmful computer
+      <br />
+      ● information containing excessively violent or cruel expressions;
+      <br />
+      ● information containing computer viruses or other harmful computer
       programs;
-      <br />● information that includes expressions that may damage the
-      reputation or credibility of the Company, other users of the Service, or
-      other third parties;
-      <br />● information containing excessively obscene expressions;
-      <br />● information containing expressions that promote discrimination;
-      <br />● information that includes expressions that encourage suicide or
+      <br />
+      ● information that includes expressions that may damage the reputation or
+      credibility of the Company, other users of the Service, or other third
+      parties;
+      <br />
+      ● information containing excessively obscene expressions;
+      <br />
+      ● information containing expressions that promote discrimination;
+      <br />
+      ● information that includes expressions that encourage suicide or
       self-harm;
-      <br />● information containing expressions that promote the inappropriate
-      use of drugs;
-      <br />● information containing antisocial expressions;
-      <br />● information that seeks to spread information to third parties,
-      such as chain mail, etc.
-      <br />● information containing expressions that may cause discomfort to
-      others;
+      <br />
+      ● information containing expressions that promote the inappropriate use of
+      drugs;
+      <br />
+      ● information containing antisocial expressions;
+      <br />
+      ● information that seeks to spread information to third parties, such as
+      chain mail, etc.
+      <br />
+      ● information containing expressions that may cause discomfort to others;
       <br />
       (f) acts that place an excessive burden on the Service's network or
       system, or acts of attack;
@@ -191,7 +224,7 @@ const TermsOfUse = () => {
       other users of the Service, or other third parties;
       <br />
       (o) conflicted actions against rules regarding the use of the Service to
-      be posted on the Company's website: https://www.crypto-trust.io/;
+      be posted on the Company's website: https://www.darwwin.io/;
       <br />
       (p) provision of benefits to antisocial forces, etc.;
       <br />
@@ -216,7 +249,8 @@ const TermsOfUse = () => {
       <br />
       (b) When this service cannot be operated due to computer or communication
       line failures, mishandling, excessive concentration of access,
-      unauthorized access, hacking, etc.
+      unauthorized access, <br />
+      hacking, etc.
       <br />
       (c) In the event that this service cannot be operated due to force majeure
       such as earthquake, lightning, fire, windstorm, flood, power outage,
@@ -229,7 +263,8 @@ const TermsOfUse = () => {
       service's system whereby the service's system is taken out of service or
       put to offline for the purposes of correcting or pre-empting one or more
       service difficulties or faults. These outage incidents may include without
-      limitation any of the following activities where applicable:
+      limitation any of the following
+      <br /> activities where applicable:
       <br />
       (i) software updates;
       <br />
@@ -376,7 +411,7 @@ const TermsOfUse = () => {
       <br />
       1. The Company's handling of user information of Registered Users is
       governed by the Company's separate privacy policy
-      (https://www.crypto-trust.io/privacy), and Registered Users agree to the
+      (https://www.darwwin.io/privacy), and Registered Users agree to the
       Company's handling of their user information in accordance with this
       privacy policy.
       <br />
@@ -490,7 +525,7 @@ const TermsOfUse = () => {
       or in connection with these Terms of Use.
       <br />
       <br />
-      Date: 6th February, 2024
+      Date: 15th September, 2024
     </Box>
   );
 };
