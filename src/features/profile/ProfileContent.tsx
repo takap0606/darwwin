@@ -427,7 +427,7 @@ const ProfileContent = () => {
                   justifyContent="space-between"
                   alignItems="center"
                 >
-                  <Typography fontSize={14}>Username</Typography>
+                  <Typography fontSize={14}>UID</Typography>
                   <Typography fontSize={14}>
                     {userInfo.peUsername !== undefined
                       ? `${userInfo.peUsername}`
