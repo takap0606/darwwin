@@ -28,6 +28,7 @@ const RequestForSelling = () => {
     const fetchTokenPriceAsync = async () => {
       const price: any = await fetchTokenPrice();
       setTokenPrice(price);
+      console.log(price);
     };
 
     fetchTokenPriceAsync();
@@ -35,7 +36,7 @@ const RequestForSelling = () => {
 
   return (
     <Layout>
-      <RequestForSellingContent tokenPrice={tokenPrice} />
+      {tokenPrice && <RequestForSellingContent tokenPrice={tokenPrice} />}
     </Layout>
   );
 };

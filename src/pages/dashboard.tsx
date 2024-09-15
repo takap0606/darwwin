@@ -35,7 +35,9 @@ const Dashboard = () => {
 
   return (
     <Layout>
-      <DashboardContent tokenPrice={tokenPrice} />
+      {tokenPrice && <DashboardContent tokenPrice={tokenPrice} />}
     </Layout>
   );
 };
+
+export default Dashboard;
