@@ -78,20 +78,18 @@ const NftCard: FC<Props> = ({
   const [level, setLevel] = useState('');
 
   const checkRarity = () => {
-    console.log(name);
-    if (name.startsWith('BITBULL')) {
+    if (name.trim().startsWith('BITBULL')) {
       setLevel('common');
-    } else if (name.startsWith('CYBER PUNK  BULL')) {
+    } else if (name.trim().startsWith('CYBER PUNK BULL')) {
       setLevel('uncommon');
-    } else if (name.startsWith('GOLD BULL')) {
+    } else if (name.trim().startsWith('GOLD BULL')) {
       setLevel('rare');
-    } else if (name.startsWith('BLACK GOLD BULL')) {
+    } else if (name.trim().startsWith('BLACK GOLD BULL')) {
       setLevel('super_rare');
     } else {
       setLevel('');
     }
   };
-
   const setNft = () => {
     const values = {
       id: id,
