@@ -1,13 +1,14 @@
 import useFirebaseUser from 'lib/useFirebaseUser';
-import { useContext, useEffect } from 'react';
+import { useContext, useEffect, useState } from 'react';
 import Layout from 'components/common/Layout';
 import { UserContext } from 'contexts/UserContext';
 import RequestForSellingContent from 'features/request-selling/components/RequestForSellingContent';
 import { fetchTokenPrice } from 'utils/fetchTokenPrice';
 
-const RequestForSelling = ({ tokenPrice }: any) => {
+const RequestForSelling = () => {
   const { user } = useFirebaseUser();
   const { setUserInfo } = useContext(UserContext);
+  const [tokenPrice, setTokenPrice] = useState(null);
 
   useEffect(() => {
     const data = {
@@ -23,6 +24,15 @@ const RequestForSelling = ({ tokenPrice }: any) => {
     setUserInfo(data);
   }, [user]);
 
+  useEffect(() => {
+    const fetchTokenPriceAsync = async () => {
+      const price: any = await fetchTokenPrice();
+      setTokenPrice(price);
+    };
+
+    fetchTokenPriceAsync();
+  }, []);
+
   return (
     <Layout>
       <RequestForSellingContent tokenPrice={tokenPrice} />
@@ -31,14 +41,3 @@ const RequestForSelling = ({ tokenPrice }: any) => {
 };
 
 export default RequestForSelling;
-
-export const getServerSideProps = async () => {
-  //トークン価格の取得
-  const tokenPrice = await fetchTokenPrice();
-
-  return {
-    props: {
-      tokenPrice: tokenPrice,
-    },
-  };
-};
