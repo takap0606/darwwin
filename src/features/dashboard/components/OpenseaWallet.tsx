@@ -18,10 +18,7 @@ import NftList from 'features/dashboard/components/NftList';
 import { collection, getDocs, query, where } from 'firebase/firestore';
 import useFirebase from 'lib/useFirebase';
 import Loader from 'components/common/Loader';
-import {
-  calculateOpenSeaPricing,
-  calculateX2Y2Pricing,
-} from '../utils/calculatePricing';
+import { calculateX2Y2Pricing } from '../utils/calculatePricing';
 
 const AvatarAddWrapper = styled(Avatar)(
   ({ theme }) => `
@@ -73,11 +70,11 @@ function OpenseaWallet({ tokens }: any) {
     method: 'GET',
     headers: {
       Accept: 'application/json',
-      'X-API-KEY': process.env.NEXT_PUBLIC_OPENSEA_API || '',
+      'X-API-KEY': process.env.NEXT_PUBLIC_RESERVOIR_API || '',
     },
   };
 
-  // const WALLET_ADDRESS = '0x091D4e4BAC946fD9564710D7eCDed83Ca808e606';
+  // const WALLET_ADDRESS = '0x7734de7076eb04afd65a69a9f59128ec0f229127';
 
   const WALLET_ADDRESS = userInfo.walletAddress || '';
 
@@ -86,27 +83,9 @@ function OpenseaWallet({ tokens }: any) {
       setIsLoading(true);
       const fetchData = async () => {
         try {
-          const openSeaCollectionSlugs = [''];
-
           const x2y2CollectionSlugs = [
             '0xf532e895f1fb80ce4bc1bb88c2887d35e764c5d4', // BITBULL
           ];
-
-          let openSeaAssets: any[] = [];
-
-          if (process.env.NEXT_PUBLIC_OPENSEA_API) {
-            const openSeaRequests = openSeaCollectionSlugs.map((slug) =>
-              axios.get(
-                `https://api.opensea.io/api/v2/chain/ethereum/account/${WALLET_ADDRESS}/nfts?collection=${slug}`,
-                options,
-              ),
-            );
-
-            const openSeaResponses = await Promise.all(openSeaRequests);
-            openSeaAssets = openSeaResponses.flatMap(
-              (response) => response.data.nfts,
-            );
-          }
 
           const x2y2Requests = x2y2CollectionSlugs.map((slug) =>
             axios.get(
@@ -119,50 +98,6 @@ function OpenseaWallet({ tokens }: any) {
           const x2y2Assets = x2y2Responses.flatMap(
             (response) => response.data.tokens,
           );
-
-          // OpenSea specific processing if assets were fetched
-          let resolvedOpenSeaAssets: any[] = [];
-          if (openSeaAssets.length > 0) {
-            const fetchLastSaleEvent = async (asset: {
-              contract: any;
-              identifier: any;
-            }) => {
-              const eventsUrl = `https://api.opensea.io/api/v2/events/chain/ethereum/contract/${asset.contract}/nfts/${asset.identifier}?event_type=sale`;
-              const eventsResponse = await axios.get(eventsUrl, options);
-              const saleEvents = eventsResponse.data.asset_events.filter(
-                (event: { event_type: string }) => event.event_type === 'sale',
-              );
-
-              const latestSaleEvent = saleEvents.reduce(
-                (
-                  latest: { event_timestamp: number },
-                  event: { event_timestamp: number },
-                ) =>
-                  latest.event_timestamp > event.event_timestamp
-                    ? latest
-                    : event,
-                saleEvents[0] || {},
-              );
-
-              return latestSaleEvent;
-            };
-
-            const normalizedOpenSeaAssetsPromises = openSeaAssets.map(
-              async (asset) => {
-                const last_sale = await fetchLastSaleEvent(asset);
-                return {
-                  id: asset.identifier,
-                  platform: 'opensea',
-                  pricing: calculateOpenSeaPricing(last_sale, tokens),
-                  ...asset,
-                };
-              },
-            );
-
-            resolvedOpenSeaAssets = await Promise.all(
-              normalizedOpenSeaAssetsPromises,
-            );
-          }
 
           const normalizedX2y2Assets = x2y2Assets.map((asset) => ({
             id: asset.token.tokenId,
@@ -197,14 +132,11 @@ function OpenseaWallet({ tokens }: any) {
             );
           };
 
-          const [filteredOpenSeaAssets, filteredX2y2Assets] = await Promise.all(
-            [
-              filterAssets(resolvedOpenSeaAssets),
-              filterAssets(normalizedX2y2Assets),
-            ],
-          );
+          const [filteredX2y2Assets] = await Promise.all([
+            filterAssets(normalizedX2y2Assets),
+          ]);
 
-          setNftListData([...filteredOpenSeaAssets, ...filteredX2y2Assets]);
+          setNftListData([...filteredX2y2Assets]);
         } catch (error) {
           console.error('Error fetching data:', error);
         }
