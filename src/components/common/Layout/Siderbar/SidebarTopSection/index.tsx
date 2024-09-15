@@ -42,7 +42,7 @@ function SidebarTopSection() {
               backgroundColor: '#fff',
             }}
             alt={userInfo.nickname}
-            src="/static/images/avatars/sample_avatar.svg"
+            src="/static/images/avatars/sample_avatar.png"
           />
         ))}
 

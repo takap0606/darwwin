@@ -161,10 +161,9 @@ const ReportsListCard = ({ item, updated, setUpdated }: any) => {
               <Typography>Disclaimer:</Typography>
               <Typography>
                 Please note that affiliate rewards minus 5% as a withdrawal fee
-                will be sent to your designated Paradise Exchange wallet.
-                Requests made by the 10th will be processed on the 15th.
-                Requests after the 11th will be processed on the 15th of the
-                following month.
+                will be sent to your designated Bybit wallet. Requests made by
+                the 10th will be processed on the 15th. Requests after the 11th
+                will be processed on the 15th of the following month.
               </Typography>
             </Box>
 

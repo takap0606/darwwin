@@ -430,11 +430,7 @@ const UserlistTotalContent = () => {
           </Box>
           <Card sx={{ px: 1 }}>
             <CardContent>
-              <Box>
-                NP: NFT Points / Common(1), Uncommon(5), Rare(10), Super
-                Rare(30), Ultra Rare(100)
-              </Box>
-              <Box>Vol: Market Volume - Amount minus Opensea fees</Box>
+              <Box>Vol: Market Volume - Amount minus Marketplace fees</Box>
               <Box>VCRP: Volume for calculation of reward percentage </Box>
               <Grid
                 sx={{ px: 0, py: 2 }}

@@ -262,26 +262,7 @@ const UserlistContent = () => {
           ' | Vol: ' +
           floorDecimal(volumeWithoutFee, 0).toLocaleString() +
           ' ' +
-          'USD' +
-          ' | ' +
-          'Rate:' +
-          setRate +
-          '%' +
-          `${
-            startOfMonth(date).getTime() == startOfMonth(now).getTime()
-              ? ' | ' +
-                'ARA: ' +
-                floorDecimal(affiliateRewardTotal, 3) +
-                'ETH' +
-                ' (DIRECT: ' +
-                floorDecimal(affiliateRewardAmount, 3) +
-                'ETH' +
-                ' , ' +
-                'COMP: ' +
-                floorDecimal(compression, 3) +
-                'ETH)'
-              : ''
-          }`
+          'USD'
         }
       >
         {isDisplayNfts && (
@@ -519,14 +500,7 @@ const UserlistContent = () => {
             }}
           >
             <CardContent>
-              <Box>
-                NP: NFT Points / Common(1), Uncommon(5), Rare(10), Super
-                Rare(30), Ultra Rare(100)
-              </Box>
-              <Box>Vol: Market Volume - Amount minus Opensea fees</Box>
-              <Box>ARA: Affiliate Reward Amount</Box>
-              <Box>DIRECT: Direct Amount</Box>
-              <Box>COMP: Compression Amount</Box>
+              <Box>Vol: Market Volume - Amount minus Marketplace fees</Box>
               <Box mt={1}>
                 ※Please select the target month before pressing the "show list"
                 button.

@@ -563,10 +563,6 @@ const AssetSellingCard = ({
                       {name}{' '}
                     </Typography>
                   </Box>
-                  <Box mt={1}>
-                    <LabelSuccess mr={1}>{series}</LabelSuccess>
-                    {level && <LabelSuccess>{level}</LabelSuccess>}
-                  </Box>
                   <Box
                     sx={{
                       pt: 3,
@@ -579,7 +575,7 @@ const AssetSellingCard = ({
                       }}
                     >
                       <Typography variant="h5" gutterBottom noWrap>
-                        Invested
+                        Staking
                       </Typography>
                       <Typography variant="h5" gutterBottom noWrap>
                         {asset_eth_price} ETH ({last_sale_usd_price} USD)
@@ -924,7 +920,7 @@ const AssetSellingCard = ({
               <Typography>
                 Within 2 weeks after the management team receives the NFT, the
                 amount minus 5% as a selling fee will be sent to your designated
-                Paradise Exchange wallet.
+                Bybit wallet.
               </Typography>
             </Box>
             <Button

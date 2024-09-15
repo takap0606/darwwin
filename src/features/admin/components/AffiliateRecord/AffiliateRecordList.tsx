@@ -290,7 +290,7 @@ const AffiliateRecordList = () => {
                         </TableCell>
                         <TableCell align="left">
                           <Typography className={classes.bold}>
-                            Paradise Exchange Username/ email
+                            Bybit Username/ email
                           </Typography>
                         </TableCell>
                         <TableCell align="left">

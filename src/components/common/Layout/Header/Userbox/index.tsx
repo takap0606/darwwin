@@ -167,7 +167,7 @@ function HeaderUserbox() {
           ) : (
             <UserAvatar
               alt={account.nickname}
-              src="/static/images/avatars/sample_avatar.svg"
+              src="/static/images/avatars/sample_avatar.png"
             />
           ))}
       </UserBoxButton>
@@ -205,11 +205,10 @@ function HeaderUserbox() {
               <Avatar
                 sx={{
                   backgroundColor: '#fff',
-                  p: 0.5,
                 }}
                 variant="rounded"
                 alt={account.nickname}
-                src="/static/images/avatars/sample_avatar.svg"
+                src="/static/images/avatars/sample_avatar.png"
               />
             ))}
           <UserBoxText>

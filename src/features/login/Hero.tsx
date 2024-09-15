@@ -102,24 +102,19 @@ function Hero() {
             color="text.secondary"
             fontWeight="normal"
           >
-            Welcome to DARWWIN! As a trailblazing Web3 company, we're excited to
-            offer a distinctive platform for NFT staking, now enhanced with the
-            capability to unlock the true value of NFTs. Our platform invites
-            everyone to easily participate in NFT staking, tapping into the
-            cryptocurrency market's growth potential. We focus on a select range
-            of cryptocurrencies to foster portfolio expansion and asset growth.
-            Designed for ease of use, our platform serves both beginners and
-            experts, streamlining digital asset management. With advanced
-            technology and a secure environment, we're opening new paths for
-            digital asset expansion. Join DARWWIN to dive into the innovative
-            realm of NFT staking. Here, you'll find a safe and efficient entry
-            point into the cryptocurrency world and take part in the vanguard of
-            the new era in digital asset growth, fully realizing the intrinsic
-            value of NFTs. Start your journey with us today!
+            Welcome to DARWWIN, your gateway to the future of NFT staking and
+            digital asset growth.
+            <br /> At DARWWIN, we empower you to unlock the full potential of
+            your NFTs by staking and growing your digital assets with ease. Our
+            platform is designed to take advantage of the booming cryptocurrency
+            market, helping you maximize your portfolio during the bull run.
+            Whether you’re a beginner or an expert, our intuitive interface and
+            robust security make it simple to manage your assets and track your
+            progress in real time.
+            <br /> Join DARWWIN today and experience a secure, innovative way to
+            grow your NFT portfolio. With us, you’re not just investing in
+            NFTs—you’re stepping into the next evolution of digital finance.
           </TypographyH2>
-          <Typography fontSize="1.8rem" color="#fff" fontWeight="bold">
-            DARWWIN NFT ROADMAP
-          </Typography>
           <ListItemWrapper
             sx={{
               mt: 2,
@@ -127,53 +122,11 @@ function Hero() {
             }}
           >
             <NftImageAvatar>
-              <img src="/static/images/hero/roadmap2.jpg" alt="" />
+              <img src="/static/images/hero/roadmap1.svg" alt="" />
             </NftImageAvatar>
             <Typography variant="h6">
-              <b>STEP1 </b>
               <Typography component="span" variant="subtitle2">
-                {' '}
-                <br />
-                - LAUNCH of MEDIA TO EARN
-                <br />
-                - WORLD TRADE academy launch
-                <br />
-              </Typography>
-            </Typography>
-          </ListItemWrapper>
-          <ListItemWrapper
-            sx={{
-              mb: 2,
-            }}
-          >
-            <NftImageAvatar>
-              <img src="/static/images/hero/roadmap4.jpg" alt="" />
-            </NftImageAvatar>
-            <Typography variant="h6">
-              <b>STEP2 </b>
-              <Typography component="span" variant="subtitle2">
-                {' '}
-                <br />
-                - Metaverse
-                <br />- DARWWIN Figure Collection
-              </Typography>
-            </Typography>
-          </ListItemWrapper>
-          <ListItemWrapper
-            sx={{
-              mb: 2,
-            }}
-          >
-            <NftImageAvatar>
-              <img src="/static/images/hero/roadmap3.jpg" alt="" />
-            </NftImageAvatar>
-            <Typography variant="h6">
-              <b>STEP3 </b>
-              <Typography component="span" variant="subtitle2">
-                {' '}
-                <br />
-                - Collaboration with many brands
-                <br />- Launch another project
+                Partnership with BYBIT
               </Typography>
             </Typography>
           </ListItemWrapper>

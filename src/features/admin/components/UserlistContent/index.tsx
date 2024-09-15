@@ -477,11 +477,7 @@ const UserlistContent = () => {
           </Box>
           <Card sx={{ px: 1 }}>
             <CardContent>
-              <Box>
-                NP: NFT Points / Common(1), Uncommon(5), Rare(10), Super
-                Rare(30), Ultra Rare(100)
-              </Box>
-              <Box>Vol: Market Volume - Amount minus Opensea fees</Box>
+              <Box>Vol: Market Volume - Amount minus Marketplace fees</Box>
               <Box>ARA: Affiliate Reward Amount</Box>
               <Box>DIRECT: Direct Amount</Box>
               <Box>COMP: Compression Amount</Box>

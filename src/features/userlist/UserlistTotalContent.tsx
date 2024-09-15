@@ -235,17 +235,7 @@ const UserlistTotalContent = () => {
           ' | Vol: ' +
           floorDecimal(volumeWithoutFee, 0).toLocaleString() +
           ' ' +
-          'USD' +
-          ' | ' +
-          'Rate:' +
-          setRate +
-          '%' +
-          ' | ' +
-          'VCRP: ' +
-          volumeWithoutFeeRateCal.toLocaleString() +
-          ' USD | DirectVol: ' +
-          directChildVolume.toLocaleString() +
-          ' USD'
+          'USD'
         }
       >
         {isDisplayNfts && (
@@ -471,12 +461,7 @@ const UserlistTotalContent = () => {
             }}
           >
             <CardContent>
-              <Box>
-                NP: NFT Points / Common(1), Uncommon(5), Rare(10), Super
-                Rare(30), Ultra Rare(100)
-              </Box>
-              <Box>Vol: Market Volume - Amount minus Opensea fees</Box>
-              <Box>VCRP: Volume for calculation of reward percentage </Box>
+              <Box>Vol: Market Volume - Amount minus Marketplace fees</Box>
               <Grid
                 sx={{ px: 0, py: 2 }}
                 container

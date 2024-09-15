@@ -48,37 +48,6 @@ const DashboardPageHeader = () => {
 
   return (
     <Grid container alignItems="center">
-      <Grid item>
-        <Box
-          sx={{
-            backgroundColor: '#fff',
-            mr: 2,
-            borderRadius: '25%',
-          }}
-        >
-          {userInfo.imageUrl !== undefined ? (
-            <Avatar
-              sx={{
-                width: theme.spacing(6),
-                height: theme.spacing(6),
-                borderRadius: '25%',
-              }}
-              alt=""
-              src={userInfo.imageUrl}
-            />
-          ) : (
-            <Avatar
-              sx={{
-                p: 0.6,
-                width: theme.spacing(6),
-                height: theme.spacing(6),
-              }}
-              alt=""
-              src="/static/images/avatars/sample_avatar.svg"
-            />
-          )}
-        </Box>
-      </Grid>
       <Grid item overflow="hidden">
         <Typography variant="h3" component="h3" gutterBottom noWrap>
           {'Welcome'},{' '}

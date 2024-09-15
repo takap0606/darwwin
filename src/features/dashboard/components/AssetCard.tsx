@@ -358,10 +358,6 @@ const AssetCard = ({
                       {name}{' '}
                     </Typography>
                   </Box>
-                  <Box mt={1}>
-                    <LabelSuccess mr={1}>{series}</LabelSuccess>
-                    {level && <LabelSuccess>{level}</LabelSuccess>}
-                  </Box>
                   <Box
                     sx={{
                       pt: 3,
@@ -374,7 +370,7 @@ const AssetCard = ({
                       }}
                     >
                       <Typography variant="h5" gutterBottom noWrap>
-                        Invested
+                        Staking
                       </Typography>
                       <Typography variant="h5" gutterBottom noWrap>
                         {asset_eth_price} ETH ({last_sale_usd_price} USD)

@@ -41,7 +41,9 @@ function Footer() {
           {/* FIXME: Privacy Policy */}
           {/* <Button onClick={handleOpen}>Privacy Policy</Button> */}
           <Box>
-            <Typography variant="subtitle1">&copy; 2024 - DARWWIN</Typography>
+            <Typography variant="subtitle1">
+              &copy; 2024 - DARWWIN in Partnership with BYBIT
+            </Typography>
           </Box>
         </Box>
       </FooterWrapper>

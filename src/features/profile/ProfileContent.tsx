@@ -337,7 +337,7 @@ const ProfileContent = () => {
                 <img src={userInfo.imageUrl} alt="profile_image" />
               ) : (
                 <img
-                  src="/static/images/avatars/sample_avatar.svg"
+                  src="/static/images/avatars/sample_avatar.png"
                   alt="profile_image"
                 />
               )}
@@ -380,8 +380,10 @@ const ProfileContent = () => {
                       <Box display="flex" alignItems="center">
                         <Box mr={1} display="flex">
                           <img
-                            src="/static/images/logo/paradise-exchange.svg"
-                            alt="paradise exchange"
+                            // FIXME
+                            src="/static/images/hero/roadmap1.svg"
+                            alt="bybit"
+                            width="16px"
                             height="16px"
                           />
                         </Box>
@@ -392,7 +394,7 @@ const ProfileContent = () => {
                             fontSize: `${theme.typography.pxToRem(16)}`,
                           }}
                         >
-                          Paradise Exchange
+                          Bybit
                         </Typography>
                       </Box>
                     </>
@@ -562,9 +564,7 @@ const ProfileContent = () => {
               <Box display="flex" alignItems="center">
                 <Box>
                   <Grid display="flex" sx={{ minWidth: 140 }}>
-                    <Typography variant="h4">
-                      Paradise Exchange userInfo
-                    </Typography>
+                    <Typography variant="h4">Bybit userInfo</Typography>
                   </Grid>
                 </Box>
               </Box>
