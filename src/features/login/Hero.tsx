@@ -50,6 +50,21 @@ const ListItemWrapper = styled(Box)(
 `,
 );
 
+const BybitLogo = styled(Box)(
+  ({ theme }) => `
+    width: ${theme.spacing(12)};
+    height: ${theme.spacing(12)};
+    flex-shrink: 0;
+    overflow: hidden;
+
+    img {
+      width: 100%;
+      height: 100%;
+      display: block;
+    }
+`,
+);
+
 const NftImageAvatar = styled(Box)(
   ({ theme }) => `
     width: ${theme.spacing(8)};
@@ -115,20 +130,11 @@ function Hero() {
             grow your NFT portfolio. With us, you’re not just investing in
             NFTs—you’re stepping into the next evolution of digital finance.
           </TypographyH2>
-          <ListItemWrapper
-            sx={{
-              mt: 2,
-              mb: 2,
-            }}
-          >
-            <NftImageAvatar>
+          <Typography variant="h2">Partnership</Typography>
+          <ListItemWrapper>
+            <BybitLogo>
               <img src="/static/images/hero/roadmap1.svg" alt="" />
-            </NftImageAvatar>
-            <Typography variant="h6">
-              <Typography component="span" variant="subtitle2">
-                Partnership with BYBIT
-              </Typography>
-            </Typography>
+            </BybitLogo>
           </ListItemWrapper>
         </Grid>
         <Grid item md={6}>
