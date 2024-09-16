@@ -2,6 +2,7 @@ import React, { FC } from 'react';
 import NftCard from 'features/dashboard/components/NftCard';
 
 const NftList: FC<any> = ({ nftListData }) => {
+  console.log(nftListData);
   return (
     <>
       {nftListData.map(

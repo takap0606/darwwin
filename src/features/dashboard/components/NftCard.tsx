@@ -8,7 +8,6 @@ import {
   Card,
   CardContent,
   alpha,
-  useTheme,
 } from '@mui/material';
 import useFirebase from 'lib/useFirebase';
 import { addDoc, collection, serverTimestamp } from 'firebase/firestore';
@@ -79,6 +78,12 @@ const NftCard: FC<Props> = ({
   const [nftPoint, setNftPoint] = useState('');
 
   const checkRarity = () => {
+    // nameがnullまたはundefinedの場合は処理を中止
+    if (!name) {
+      setLevel('');
+      setNftPoint('');
+      return;
+    }
     // #で区切り、前半部分を取得し、スペースを正規化
     const namePrefix = name.split('#')[0].trim().replace(/\s+/g, ' ');
 
@@ -99,9 +104,6 @@ const NftCard: FC<Props> = ({
       setNftPoint('');
     }
   };
-
-  console.log('level', level);
-  console.log('name', name);
 
   const setNft = () => {
     const values = {

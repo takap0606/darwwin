@@ -74,7 +74,7 @@ function OpenseaWallet({ tokens }: any) {
     },
   };
 
-  // const WALLET_ADDRESS = '0x7a3a0f5267957389c6dab52098573358c6f369f3';
+  // const WALLET_ADDRESS = '0x4a216882DeaA38ABE9eB15B0a0720294dfa2e071';
 
   const WALLET_ADDRESS = userInfo.walletAddress || '';
 
