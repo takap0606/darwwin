@@ -283,7 +283,7 @@ function HeaderUserbox() {
                 primaryTypographyProps={{
                   variant: 'h5',
                 }}
-                primary={'Affiliate Reward'}
+                primary={'Reward'}
               />
               <Box display="flex" alignItems="center">
                 <ChevronRightTwoToneIcon

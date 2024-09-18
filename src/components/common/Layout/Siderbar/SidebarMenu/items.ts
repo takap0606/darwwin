@@ -38,7 +38,7 @@ const menuItems: MenuItems[] = [
             link: '/profile',
           },
           {
-            name: 'Affiliate Reward',
+            name: 'Reward',
             link: '/reports',
           },
           {

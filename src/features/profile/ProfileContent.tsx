@@ -574,7 +574,7 @@ const ProfileContent = () => {
                 }}
                 id="outlined-required"
                 fullWidth
-                label="Username"
+                label="UID"
                 margin="normal"
                 name="pe_username"
                 onBlur={editFormik.handleBlur}

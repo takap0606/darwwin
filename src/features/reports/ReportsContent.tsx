@@ -129,7 +129,7 @@ const ReportsContent = () => {
   const year = today.getFullYear();
   const month = today.getMonth() + 1;
 
-  //Affiliate Rewards List
+  //Rewards List
   const [affiliateList, setAffiliateList] = useState<any[]>([]);
   const [totalBonusAmount, setTotalBonusAmount] = useState(0);
   const [capitalgainList, setCapitalgainList] = useState<any[]>([]);
@@ -234,13 +234,10 @@ const ReportsContent = () => {
   return (
     <>
       <Head>
-        <title>DARWWIN Dashboard - Affiliate Reward</title>
+        <title>DARWWIN Dashboard - Reward</title>
       </Head>
       <PageHeaderWrapper>
-        <PageHeader
-          header="Affiliate Rewards"
-          description="Affiliate rewards and progress."
-        />
+        <PageHeader header="Rewards" description="Rewards and progress." />
       </PageHeaderWrapper>
       <Grid
         sx={{

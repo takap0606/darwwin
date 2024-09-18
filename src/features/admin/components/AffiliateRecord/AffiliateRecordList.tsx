@@ -233,7 +233,7 @@ const AffiliateRecordList = () => {
                   fontSize: `${theme.typography.pxToRem(12)}`,
                 }}
               >
-                Past affiliate rewards
+                Past rewards
               </Typography>
               <Typography variant="h4">LIST</Typography>
             </Box>

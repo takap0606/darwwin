@@ -478,7 +478,7 @@ const UserlistContent = () => {
           <Card sx={{ px: 1 }}>
             <CardContent>
               <Box>Vol: Market Volume - Amount minus Marketplace fees</Box>
-              <Box>ARA: Affiliate Reward Amount</Box>
+              <Box>ARA: Reward Amount</Box>
               <Box>DIRECT: Direct Amount</Box>
               <Box>COMP: Compression Amount</Box>
               <Box mt={1}>
