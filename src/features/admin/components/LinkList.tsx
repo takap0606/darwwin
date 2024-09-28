@@ -28,6 +28,11 @@ const MENUS = [
     path: '/admin/affiliate-record',
   },
   {
+    id: 'set-initial-token',
+    name: 'Set Initial Token',
+    path: '/admin/nft/set-initial-token',
+  },
+  {
     id: 'series-total',
     name: 'NFT Total',
     path: '/admin/nft/total',

@@ -92,19 +92,6 @@ const ImageWrapper = styled(Box)(
 `,
 );
 
-const LabelSuccess = styled(Box)(
-  ({ theme }) => `
-        display: inline-block;
-        background: ${theme.colors.success.lighter};
-        color: ${theme.colors.success.main};
-        text-transform: uppercase;
-        font-size: ${theme.typography.pxToRem(11)};
-        font-weight: bold;
-        padding: ${theme.spacing(0.3, 2)};
-        border-radius: ${theme.general.borderRadiusSm};
-    `,
-);
-
 const AssetCard = ({
   data,
   tokens,

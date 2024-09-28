@@ -460,7 +460,7 @@ const Hit = ({ hit }: any) => {
   );
 };
 
-const UserTable = () => {
+const NftTable = () => {
   const theme = useTheme();
 
   const classes = useStyles();
@@ -478,6 +478,7 @@ const UserTable = () => {
           const data = doc.data();
           nftList.push({
             ...data,
+            docId: doc.id,
             fixed_created_at: data.created_at.toDate().toLocaleString(),
             number: Number(data.name?.substr(data.name.indexOf('#') + 1)) || 0,
           });
@@ -501,6 +502,7 @@ const UserTable = () => {
 
     if (worksheet) {
       worksheet.columns = [
+        { header: 'docId', key: 'docId' },
         { header: 'Series', key: 'series' },
         { header: 'Level', key: 'level' },
         { header: 'NFT Points', key: 'nft_points' },
@@ -659,4 +661,4 @@ const UserTable = () => {
   );
 };
 
-export default UserTable;
+export default NftTable;
