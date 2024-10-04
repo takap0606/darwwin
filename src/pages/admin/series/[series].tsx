@@ -5,6 +5,7 @@ import { UserContext } from 'contexts/UserContext';
 import useFirebaseUser from 'lib/useFirebaseUser';
 import { useRouter } from 'next/router';
 import { useContext, useEffect } from 'react';
+import UltraSeries from 'features/admin/components/UltraSeries';
 
 const AdminSeries = () => {
   const { user } = useFirebaseUser();
@@ -29,9 +30,12 @@ const AdminSeries = () => {
   return (
     <Layout>
       <AdminLayout pageId="userlist">
-        {series !== undefined && (
-          <Series series={series?.toLocaleString().toUpperCase()} />
-        )}
+        {series !== undefined &&
+          (series === 'ultra' ? (
+            <UltraSeries />
+          ) : (
+            <Series series={series.toLocaleString().toUpperCase()} />
+          ))}
       </AdminLayout>
     </Layout>
   );

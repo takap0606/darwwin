@@ -43,49 +43,9 @@ const MENUS = [
     path: '/admin/series/a',
   },
   {
-    id: 'series-b',
-    name: 'B series',
-    path: '/admin/series/b',
-  },
-  {
-    id: 'series-c',
-    name: 'C series',
-    path: '/admin/series/c',
-  },
-  {
-    id: 'series-d',
-    name: 'D series',
-    path: '/admin/series/d',
-  },
-  {
-    id: 'series-e',
-    name: 'E series',
-    path: '/admin/series/e',
-  },
-  {
-    id: 'series-f',
-    name: 'F series',
-    path: '/admin/series/f',
-  },
-  {
-    id: 'series-g',
-    name: 'G series',
-    path: '/admin/series/g',
-  },
-  {
-    id: 'series-h',
-    name: 'H series',
-    path: '/admin/series/h',
-  },
-  {
-    id: 'series-i',
-    name: 'I series',
-    path: '/admin/series/i',
-  },
-  {
-    id: 'series-j',
-    name: 'J series',
-    path: '/admin/series/j',
+    id: 'series-ultra',
+    name: 'Ultra Rare',
+    path: '/admin/series/ultra',
   },
   {
     id: 'duplication',
