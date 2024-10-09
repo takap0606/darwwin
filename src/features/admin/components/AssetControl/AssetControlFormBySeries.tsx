@@ -146,7 +146,7 @@ const AssetControlFormBySeries = ({ series }: { series: string }) => {
   const classes = useStyles();
 
   // シリーズを引数にポートフォリオを作成する
-  const seriesAtoJ = ['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J'];
+  const seriesAtoJ = ['A'];
   const selectedPortfolio = seriesAtoJ.includes(series)
     ? createPortfolio(series)
     : [];
@@ -160,7 +160,7 @@ const AssetControlFormBySeries = ({ series }: { series: string }) => {
     },
     {
       weekly_p_growth: '',
-      term: '',
+      // term: '',
     },
   );
 
@@ -176,7 +176,7 @@ const AssetControlFormBySeries = ({ series }: { series: string }) => {
       },
       {
         weekly_p_growth: Yup.string().required(`Weekly P Growth is required`),
-        term: Yup.string().required(`Term is required`),
+        // term: Yup.string().required(`Term is required`),
       },
     ),
   );
@@ -184,6 +184,7 @@ const AssetControlFormBySeries = ({ series }: { series: string }) => {
   //過去実績の取得
   const [records, setRecords] = useState<any>([]);
   const [updated, setUpdated] = useState(false);
+
   useEffect(() => {
     const searchRecords = async () => {
       if (db) {
@@ -367,7 +368,7 @@ const AssetControlFormBySeries = ({ series }: { series: string }) => {
                         variant="outlined"
                       />
                     </Box>
-                    <Box display="flex">
+                    {/* <Box display="flex">
                       <TextField
                         error={Boolean(touched.term && errors.term)}
                         fullWidth
@@ -381,7 +382,7 @@ const AssetControlFormBySeries = ({ series }: { series: string }) => {
                         value={values.term}
                         variant="outlined"
                       />
-                    </Box>
+                    </Box> */}
                     <Button
                       sx={{
                         mt: 3,
@@ -396,8 +397,9 @@ const AssetControlFormBySeries = ({ series }: { series: string }) => {
                             errors[tokenNameLowercase]
                           );
                         }) ||
-                          (touched.weekly_p_growth && errors.weekly_p_growth) ||
-                          (touched.term && errors.term),
+                          (touched.weekly_p_growth && errors.weekly_p_growth),
+                        //  ||
+                        // (touched.term && errors.term),
                       )}
                       type="submit"
                       fullWidth
@@ -460,11 +462,11 @@ const AssetControlFormBySeries = ({ series }: { series: string }) => {
                           Weekly P Growth
                         </Typography>
                       </TableCell>
-                      <TableCell align="left">
+                      {/* <TableCell align="left">
                         <Typography className={classes.bold} noWrap>
                           Term
                         </Typography>
-                      </TableCell>
+                      </TableCell> */}
                       <TableCell align="center">
                         <Typography className={classes.bold} noWrap>
                           Edit

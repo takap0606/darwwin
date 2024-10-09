@@ -137,11 +137,11 @@ const AssetControlListCard = ({
                     <LabelSuccess>{record.weekly_p_growth}</LabelSuccess>
                   </Box>
                 </TableCell>
-                <TableCell align="left">
+                {/* <TableCell align="left">
                   <Box>
                     <LabelSuccess>{record.term}</LabelSuccess>
                   </Box>
-                </TableCell>
+                </TableCell> */}
                 <TableCell
                   sx={{
                     whiteSpace: 'nowrap',

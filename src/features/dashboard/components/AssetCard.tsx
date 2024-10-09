@@ -234,7 +234,7 @@ const AssetCard = ({
       newTotalGrowth += Number(doc.weekly_p_growth);
 
       // term1は計算に入れないための処理
-      if (doc.term === '1') return;
+      // if (doc.term === '1') return;
 
       for (const token of Object.keys(doc)) {
         if (
