@@ -28,6 +28,7 @@ import { limitMap, rateMap } from 'utils/calculateCompression';
 import sumTreeValues from 'utils/sumTreeValues';
 import { useRouter } from 'next/router';
 import floorDecimal from 'utils/floorDecimal';
+import ExcelJS from 'exceljs';
 
 const MinusSquare = (props: any) => {
   return (
@@ -83,6 +84,8 @@ const UserlistContent = () => {
   const router = useRouter();
   const { db } = useFirebase();
   const userId = router.query.id as string;
+  // Excel書き出し用Array
+  const excelAras: any[] = [];
 
   const [isDisplayNfts, setIsDisplayNfts] = useState(false);
 
@@ -211,6 +214,14 @@ const UserlistContent = () => {
     if (foundRule) {
       rate = foundRule.rate;
     }
+
+    excelAras.push({
+      name: nodes.nickname,
+      walletAddress: nodes.id,
+      setRate: nodes.setRate,
+      ownedNftLength: nodes.ownedNftLength,
+      totalAra: floorDecimal(affiliateRewardTotal, 3),
+    });
 
     return (
       <StyledTreeItem
@@ -451,6 +462,44 @@ const UserlistContent = () => {
     });
   };
 
+  //xlsx export
+  const handlerClickDownloadButton = async (
+    e: { preventDefault: () => void },
+    format: string,
+  ) => {
+    e.preventDefault();
+
+    const workbook = new ExcelJS.Workbook();
+    workbook.addWorksheet('excelAras');
+    const worksheet = workbook.getWorksheet('excelAras');
+
+    if (worksheet === undefined) {
+      return;
+    }
+
+    worksheet.columns = [
+      { header: 'Username', key: 'name' },
+      { header: 'Wallet Address', key: 'walletAddress' },
+      { header: 'Set Rate', key: 'setRate' },
+      { header: 'Nfts', key: 'ownedNftLength' },
+      { header: 'ARA', key: 'totalAra' },
+    ];
+
+    worksheet.addRows(excelAras);
+
+    const uint8Array =
+      format === 'xlsx'
+        ? await workbook.xlsx.writeBuffer() //xlsxの場合
+        : await workbook.csv.writeBuffer(); //csvの場合
+    const blob = new Blob([uint8Array], { type: 'application/octet-binary' });
+    const url = window.URL.createObjectURL(blob);
+    const a = document.createElement('a');
+    a.href = url;
+    a.download = 'sampleData.' + format; //フォーマットによってファイル拡張子を変えている
+    a.click();
+    a.remove();
+  };
+
   return (
     <>
       <Head>
@@ -549,6 +598,12 @@ const UserlistContent = () => {
                   )}
                   {open ? (
                     <Grid item xs={12}>
+                      <Button
+                        variant="outlined"
+                        onClick={(e) => handlerClickDownloadButton(e, 'xlsx')}
+                      >
+                        Excel
+                      </Button>
                       <Box display="flex" mb={1}>
                         <Button onClick={handleExpandClick}>
                           {expanded.length === 0 ? 'All open' : 'All close'}
