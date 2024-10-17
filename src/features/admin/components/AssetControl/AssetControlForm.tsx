@@ -3,6 +3,7 @@ import { Box, Grid, Card, useTheme, Typography } from '@mui/material';
 import AssetControlFormBySeries from 'features/admin/components/AssetControl/AssetControlFormBySeries';
 import { collection, getDocs, query, where } from 'firebase/firestore';
 import useFirebase from 'lib/useFirebase';
+import AssetControlFormUltra from './AssetControlFormUltra';
 
 interface NFT {
   name: string;
@@ -155,8 +156,7 @@ const AssetControlForm: React.FC = () => {
           )}
           {!isLoading && seriesUltra && (
             <Grid item xs={12} md={12}>
-              <p>ultra</p>
-              {/* <AssetControlSeriesUltra data={currentCheckedNft} /> */}
+              <AssetControlFormUltra data={currentCheckedNft} />
             </Grid>
           )}
         </Grid>
