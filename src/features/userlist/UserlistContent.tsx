@@ -23,8 +23,6 @@ import {
   where,
 } from 'firebase/firestore';
 import { REWARD_PERCENTAGE } from 'constants/REWARD_PERCENTAGE';
-import { startOfMonth } from 'utils/startOfMonth';
-import { endOfMonth } from 'utils/endOfMonth';
 import { limitMap, rateMap } from 'utils/calculateCompression';
 import sumTreeValues from 'utils/sumTreeValues';
 import { useRouter } from 'next/router';
@@ -80,11 +78,34 @@ const StyledTreeItem = styled(
   },
 }));
 
+const getPeriodDates = (
+  date: Date,
+  isFirstHalf: boolean,
+): { start: Date; end: Date } => {
+  const year = date.getFullYear();
+  const month = date.getMonth();
+
+  if (isFirstHalf) {
+    return {
+      start: new Date(year, month, 1),
+      end: new Date(year, month, 15, 23, 59, 59, 999),
+    };
+  } else {
+    return {
+      start: new Date(year, month, 16),
+      end: new Date(year, month + 1, 0, 23, 59, 59, 999),
+    };
+  }
+};
+
 const UserlistContent = () => {
   const { userInfo, setUserInfo } = useContext(UserContext);
   const { db } = useFirebase();
 
   const [isDisplayNfts, setIsDisplayNfts] = useState(false);
+  const [isFirstHalf, setIsFirstHalf] = useState(true);
+  const [date, setDate] = useState(new Date());
+  const [open, setOpen] = useState(false);
 
   const handleDisplayNfts = (event: { target: { checked: any } }) => {
     setIsDisplayNfts(event.target.checked);
@@ -120,9 +141,6 @@ const UserlistContent = () => {
     fetchUserInfo();
   }, [db, userInfo.walletAddress]);
 
-  //月毎のデータ取得
-  const [date, setDate] = useState(new Date());
-
   //前月
   const setPrevMonth = () => {
     const year = date.getFullYear();
@@ -139,14 +157,18 @@ const UserlistContent = () => {
     setDate(new Date(year, month, day));
   };
 
-  const today = date;
-  const year = today.getFullYear();
-  const month = today.getMonth() + 1;
+  const togglePeriod = () => {
+    setIsFirstHalf((prev) => !prev);
+  };
+
+  const year = date.getFullYear();
+  const month = date.getMonth() + 1;
 
   const now = new Date();
 
-  //ここから
-  const [open, setOpen] = useState(false);
+  const [componentStatus, setComponentStatus] = useState('idle');
+  const timerRef = useRef<number>();
+
   const renderTree = (nodes: any) => {
     //全てを開閉するためのnodesArrayに追加
     nodesArray.push(nodes.id);
@@ -298,10 +320,12 @@ const UserlistContent = () => {
   };
 
   const [ds, setDs] = useState<any[]>([]);
+  const [isLoading, setIsLoading] = useState(true);
 
   // ユーザー情報と子孫を取得する
   const fetchUserAndDescendants = async (invitationCode?: string) => {
     if (db && invitationCode !== undefined && invitationCode !== '') {
+      const { start, end } = getPeriodDates(date, isFirstHalf);
       const usersRef = collection(db, 'users');
       const childrenQuery = query(
         usersRef,
@@ -314,8 +338,8 @@ const UserlistContent = () => {
           collection(db, 'nfts'),
           where('owner_wallet_address', '==', childDoc.id),
           orderBy('created_at'),
-          startAt(startOfMonth(date)),
-          endAt(endOfMonth(date)),
+          startAt(start),
+          endAt(end),
         );
         const nftsSnapshot = await getDocs(nftsQuery);
         const nfts = nftsSnapshot.docs.map((doc) => ({
@@ -357,8 +381,6 @@ const UserlistContent = () => {
     }
   };
 
-  const [isLoading, setIsLoading] = useState(true);
-
   useEffect(() => {
     const fetchData = async () => {
       setIsLoading(true);
@@ -367,6 +389,7 @@ const UserlistContent = () => {
         userInfo.walletAddress !== '' &&
         userInfo.invitationCode !== ''
       ) {
+        const { start, end } = getPeriodDates(date, isFirstHalf);
         const userSnapshot = await getDoc(
           doc(collection(db, 'users'), userInfo.walletAddress),
         );
@@ -375,8 +398,8 @@ const UserlistContent = () => {
           collection(db, 'nfts'),
           where('owner_wallet_address', '==', userInfo.walletAddress),
           orderBy('created_at'),
-          startAt(startOfMonth(date)),
-          endAt(endOfMonth(date)),
+          startAt(start),
+          endAt(end),
         );
 
         //NFTのETH価格取得
@@ -417,10 +440,7 @@ const UserlistContent = () => {
       setIsLoading(false);
     };
     fetchData();
-  }, [db, userInfo.walletAddress, userInfo.invitationCode, date]);
-
-  const [componentStatus, setComponentStatus] = useState('idle');
-  const timerRef = useRef<number>();
+  }, [db, userInfo.walletAddress, userInfo.invitationCode, date, isFirstHalf]);
 
   //全てを開く
   let nodesArray: any[] = [];
@@ -502,20 +522,23 @@ const UserlistContent = () => {
             <CardContent>
               <Box>Vol: Market Volume - Amount minus Marketplace fees</Box>
               <Box mt={1}>
-                ※Please select the target month before pressing the "show list"
-                button.
+                ※Please select the target month and period before pressing the
+                "show list" button.
               </Box>
               <Box display="flex" alignItems="center">
-                <Button disabled={open} onClick={() => setPrevMonth()}>
+                <Button disabled={open} onClick={setPrevMonth}>
                   Prev Month
                 </Button>
                 <Typography>
                   {month}/{year}
                 </Typography>
-                <Button disabled={open} onClick={() => setNextMonth()}>
+                <Button disabled={open} onClick={setNextMonth}>
                   Next Month
                 </Button>
-                <Button onClick={() => enterChartUserTotal()}>Total</Button>
+                <Button disabled={open} onClick={togglePeriod}>
+                  {isFirstHalf ? '1st Half (1-15)' : '2nd Half (16-31)'}
+                </Button>
+                <Button onClick={enterChartUserTotal}>Total</Button>
               </Box>
               {isLoading ? (
                 <Box display="flex" justifyContent="center" my={8}>
