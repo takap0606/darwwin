@@ -5,7 +5,8 @@ import { collection, getDocs, query, where } from 'firebase/firestore';
 import useFirebase from 'lib/useFirebase';
 import AssetControlFormUltra from './AssetControlFormUltra';
 
-interface NFT {
+export interface NFT {
+  id: string;
   name: string;
   [key: string]: any;
 }
@@ -154,7 +155,7 @@ const AssetControlForm: React.FC = () => {
               />
             </Grid>
           )}
-          {!isLoading && seriesUltra && (
+          {!isLoading && seriesUltra && currentCheckedNft && (
             <Grid item xs={12} md={12}>
               <AssetControlFormUltra data={currentCheckedNft} />
             </Grid>
