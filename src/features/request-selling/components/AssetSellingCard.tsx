@@ -616,6 +616,63 @@ const AssetSellingCard = ({
                       </Typography>
                     </Box>
                   )}
+                  <Box mt={2}>
+                    {alreadyRequest == false ? (
+                      <>
+                        <Box
+                          sx={{
+                            height: 40,
+                            margin: 1,
+                            textAlign: 'center',
+                          }}
+                        >
+                          {requestComponentStatus === 'success' ? (
+                            <Typography>Success!</Typography>
+                          ) : (
+                            <Fade
+                              in={requestComponentStatus === 'progress'}
+                              style={{
+                                paddingBottom: 1,
+                                transitionDelay:
+                                  requestComponentStatus === 'progress'
+                                    ? '800ms'
+                                    : '0ms',
+                              }}
+                              unmountOnExit
+                            >
+                              <CircularProgress />
+                            </Fade>
+                          )}
+                        </Box>
+                        <Button
+                          onClick={handleClickRequestComponentStatus}
+                          sx={{ width: '100%' }}
+                          variant="outlined"
+                        >
+                          {requestComponentStatus !== 'idle' && isLoading
+                            ? 'Loading'
+                            : 'Request for selling'}
+                        </Button>
+                      </>
+                    ) : (
+                      <>
+                        <Button
+                          variant="outlined"
+                          sx={{ width: '100%' }}
+                          disabled
+                        >
+                          Requested
+                        </Button>
+                        <Button
+                          sx={{ width: '100%', mt: 2 }}
+                          onClick={copyToClipboard}
+                          variant="outlined"
+                        >
+                          {copied ? 'Copied' : 'Copy Transfer Address'}
+                        </Button>
+                      </>
+                    )}
+                  </Box>
                 </Box>
                 <Grid mt={2}></Grid>
               </Box>

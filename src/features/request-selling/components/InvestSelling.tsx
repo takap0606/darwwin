@@ -79,7 +79,6 @@ const InvestSelling = ({ tokenPrice }: any) => {
 
       const nftsArray: any[] = [];
       let user_price_amount = 0;
-      let isPdtAllocatedUser = false;
       data.docs.forEach((doc) => {
         if (doc.exists()) {
           const data = doc.data();
@@ -90,42 +89,35 @@ const InvestSelling = ({ tokenPrice }: any) => {
             last_sale_usd_price: data.last_sale_usd_price,
           });
           user_price_amount += Number(data.last_sale_usd_price);
-          console.log(data.pdt_allocated_date);
-          if (data.pdt_allocated_date !== undefined) {
-            isPdtAllocatedUser = true;
-          }
         }
       });
 
-      // FIXME　全件で条件クリアできているか確認する必要がある
-      let sellingFeeRate = 0.3;
+      // DARWINの場合
+      // 売却手数料5%
+      // 利益からの手数料8%〜15%
+
+      let sellingFeeRate = 0.15; // common: デフォルト15%
 
       if (
-        user_price_amount >= 120000 ||
-        nftsArray.some((item) => item.level == 'ultra_rare')
+        user_price_amount >= 100000 ||
+        nftsArray.some((item) => item.level === 'ultra_rare')
       ) {
-        sellingFeeRate = 0.2;
+        sellingFeeRate = 0.08; // ultra_rare: 8%
       } else if (
-        (user_price_amount >= 36000 && 120000 > user_price_amount) ||
-        (nftsArray.some((item) => item.level == 'super_rare') &&
-          nftsArray.some((item) => item.level !== 'ultra_rare'))
+        (user_price_amount >= 50000 && user_price_amount < 100000) ||
+        nftsArray.some((item) => item.level === 'super_rare')
       ) {
-        sellingFeeRate = 0.25;
+        sellingFeeRate = 0.09; // super_rare: 9%
       } else if (
-        (user_price_amount >= 12000 && 36000 > user_price_amount) ||
-        (nftsArray.some((item) => item.level == 'rare') &&
-          nftsArray.some((item) => item.level !== 'super_rare') &&
-          nftsArray.some((item) => item.level !== 'ultra_rare'))
+        (user_price_amount >= 10000 && user_price_amount < 50000) ||
+        nftsArray.some((item) => item.level === 'rare')
       ) {
-        sellingFeeRate = 0.275;
-      }
-
-      if (isPdtAllocatedUser) {
-        if (sellingFeeRate === 0.2) {
-          sellingFeeRate = 0.19;
-        } else {
-          sellingFeeRate -= 0.02;
-        }
+        sellingFeeRate = 0.1; // rare: 10%
+      } else if (
+        (user_price_amount >= 3000 && user_price_amount < 10000) ||
+        nftsArray.some((item) => item.level === 'uncommon')
+      ) {
+        sellingFeeRate = 0.125; // uncommon: 12.5%
       }
 
       setSellingFeeRate(sellingFeeRate);
