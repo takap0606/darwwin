@@ -188,7 +188,7 @@ function SetInvitationCode({ userInfo, db }: { userInfo: any; db: any }) {
                       nickname: _values.nickname,
                       invitation_confirmed: true,
                       registered_date: serverTimestamp(),
-                      rate: '0.00',
+                      rate: '0.10',
                     },
                     { merge: true },
                   );
