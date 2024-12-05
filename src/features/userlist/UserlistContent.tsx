@@ -31,7 +31,6 @@ import floorDecimal from 'utils/floorDecimal';
 const MinusSquare = (props: any) => {
   return (
     <SvgIcon fontSize="inherit" style={{ width: 14, height: 14 }} {...props}>
-      {/* tslint:disable-next-line: max-line-length */}
       <path d="M22.047 22.074v0 0-20.147 0h-20.12v0 20.147 0h20.12zM22.047 24h-20.12q-.803 0-1.365-.562t-.562-1.365v-20.147q0-.776.562-1.351t1.365-.575h20.147q.776 0 1.351.575t.575 1.351v20.147q0 .803-.575 1.365t-1.378.562v0zM17.873 11.023h-11.826q-.375 0-.669.281t-.294.682v0q0 .401.294 .682t.669.281h11.826q.375 0 .669-.281t.294-.682v0q0-.401-.294-.682t-.669-.281z" />
     </SvgIcon>
   );
@@ -40,7 +39,6 @@ const MinusSquare = (props: any) => {
 const PlusSquare = (props: any) => {
   return (
     <SvgIcon fontSize="inherit" style={{ width: 14, height: 14 }} {...props}>
-      {/* tslint:disable-next-line: max-line-length */}
       <path d="M22.047 22.074v0 0-20.147 0h-20.12v0 20.147 0h20.12zM22.047 24h-20.12q-.803 0-1.365-.562t-.562-1.365v-20.147q0-.776.562-1.351t1.365-.575h20.147q.776 0 1.351.575t.575 1.351v20.147q0 .803-.575 1.365t-1.378.562v0zM17.873 12.977h-4.923v4.896q0 .401-.281.682t-.682.281v0q-.375 0-.669-.281t-.294-.682v-4.896h-4.923q-.401 0-.682-.294t-.281-.669v0q0-.401.281-.682t.682-.281h4.923v-4.896q0-.401.294-.682t.669-.281v0q.401 0 .682.281t.281.682v4.896h4.923q.401 0 .682.281t.281.682v0q0 .375-.281.669t-.682.294z" />
     </SvgIcon>
   );
@@ -54,7 +52,6 @@ const CloseSquare = (props: any) => {
       style={{ width: 14, height: 14 }}
       {...props}
     >
-      {/* tslint:disable-next-line: max-line-length */}
       <path d="M17.485 17.512q-.281.281-.682.281t-.696-.268l-4.12-4.147-4.12 4.147q-.294.268-.696.268t-.682-.281-.281-.682.294-.669l4.12-4.147-4.12-4.147q-.294-.268-.294-.669t.281-.682.682-.281.696 .268l4.12 4.147 4.12-4.147q.294-.268.696-.268t.682.281 .281.669-.294.682l-4.12 4.147 4.12 4.147q.294.268 .294.669t-.281.682zM22.047 22.074v0 0-20.147 0h-20.12v0 20.147 0h20.12zM22.047 24h-20.12q-.803 0-1.365-.562t-.562-1.365v-20.147q0-.776.562-1.351t1.365-.575h20.147q.776 0 1.351.575t.575 1.351v20.147q0 .803-.575 1.365t-1.378.562v0z" />
     </SvgIcon>
   );
@@ -78,24 +75,14 @@ const StyledTreeItem = styled(
   },
 }));
 
-const getPeriodDates = (
-  date: Date,
-  isFirstHalf: boolean,
-): { start: Date; end: Date } => {
+const getPeriodDates = (date: Date): { start: Date; end: Date } => {
   const year = date.getFullYear();
   const month = date.getMonth();
 
-  if (isFirstHalf) {
-    return {
-      start: new Date(year, month, 1),
-      end: new Date(year, month, 15, 23, 59, 59, 999),
-    };
-  } else {
-    return {
-      start: new Date(year, month, 16),
-      end: new Date(year, month + 1, 0, 23, 59, 59, 999),
-    };
-  }
+  return {
+    start: new Date(year, month, 1),
+    end: new Date(year, month + 1, 0, 23, 59, 59, 999),
+  };
 };
 
 const UserlistContent = () => {
@@ -103,7 +90,6 @@ const UserlistContent = () => {
   const { db } = useFirebase();
 
   const [isDisplayNfts, setIsDisplayNfts] = useState(false);
-  const [isFirstHalf, setIsFirstHalf] = useState(true);
   const [date, setDate] = useState(new Date());
   const [open, setOpen] = useState(false);
 
@@ -155,10 +141,6 @@ const UserlistContent = () => {
     const month = date.getMonth() + 1;
     const day = date.getDate();
     setDate(new Date(year, month, day));
-  };
-
-  const togglePeriod = () => {
-    setIsFirstHalf((prev) => !prev);
   };
 
   const year = date.getFullYear();
@@ -325,7 +307,7 @@ const UserlistContent = () => {
   // ユーザー情報と子孫を取得する
   const fetchUserAndDescendants = async (invitationCode?: string) => {
     if (db && invitationCode !== undefined && invitationCode !== '') {
-      const { start, end } = getPeriodDates(date, isFirstHalf);
+      const { start, end } = getPeriodDates(date);
       const usersRef = collection(db, 'users');
       const childrenQuery = query(
         usersRef,
@@ -389,7 +371,7 @@ const UserlistContent = () => {
         userInfo.walletAddress !== '' &&
         userInfo.invitationCode !== ''
       ) {
-        const { start, end } = getPeriodDates(date, isFirstHalf);
+        const { start, end } = getPeriodDates(date);
         const userSnapshot = await getDoc(
           doc(collection(db, 'users'), userInfo.walletAddress),
         );
@@ -440,7 +422,7 @@ const UserlistContent = () => {
       setIsLoading(false);
     };
     fetchData();
-  }, [db, userInfo.walletAddress, userInfo.invitationCode, date, isFirstHalf]);
+  }, [db, userInfo.walletAddress, userInfo.invitationCode, date]);
 
   //全てを開く
   let nodesArray: any[] = [];
@@ -522,8 +504,8 @@ const UserlistContent = () => {
             <CardContent>
               <Box>Vol: Market Volume - Amount minus Marketplace fees</Box>
               <Box mt={1}>
-                ※Please select the target month and period before pressing the
-                "show list" button.
+                ※Please select the target month before pressing the "show list"
+                button.
               </Box>
               <Box display="flex" alignItems="center">
                 <Button disabled={open} onClick={setPrevMonth}>
@@ -534,9 +516,6 @@ const UserlistContent = () => {
                 </Typography>
                 <Button disabled={open} onClick={setNextMonth}>
                   Next Month
-                </Button>
-                <Button disabled={open} onClick={togglePeriod}>
-                  {isFirstHalf ? '1st Half (1-15)' : '2nd Half (16-31)'}
                 </Button>
                 <Button onClick={enterChartUserTotal}>Total</Button>
               </Box>
