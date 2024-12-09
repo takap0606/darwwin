@@ -47,6 +47,7 @@ import { calculateTokens } from 'utils/calculateTokens';
 import { TRANSFER_ADDRESS } from 'constants/TRANSFER_ADDRESS';
 import createPortfolioForUltra from 'utils/createPortfolioForUltra';
 import { SERIES_ASSETS } from 'constants/SERIES_ASSETS';
+import { calculateIncreaseRate } from 'features/dashboard/utils/calculateIncreaseRate';
 
 const AvatarSuccess = styled(Avatar)(
   ({ theme }) => `
@@ -299,9 +300,9 @@ const AssetSellingCard = ({
 
   // シリーズを引数にポートフォリオを作成する
   const selectedPortfolio =
-    series !== 'Ultra'
-      ? createPortfolio(series)
-      : createPortfolioForUltra(tokenAmounts);
+    series === 'Ultra' || series === 'X'
+      ? createPortfolioForUltra(tokenAmounts)
+      : createPortfolio(series);
 
   // セット時のETH価格を取得する
   const asset_eth_price = (Number(last_sale_eth_price) * 0.97 * 0.8).toFixed(3);
@@ -542,6 +543,13 @@ const AssetSellingCard = ({
     );
   };
 
+  // last_sale_usd_price（初期値）とcurrent_asset_price（現在価格）から増加率を計算
+  // 例えば100ドルから120ドルになった場合、増加率は20%
+  const increaseRate = calculateIncreaseRate(
+    current_asset_price,
+    last_sale_usd_price,
+  );
+
   return (
     <>
       <Card
@@ -562,6 +570,9 @@ const AssetSellingCard = ({
                     <Typography variant="h5" noWrap mr={1}>
                       {name}{' '}
                     </Typography>
+                  </Box>
+                  <Box mt={1}>
+                    <LabelSuccess mr={1}>{series}</LabelSuccess>
                   </Box>
                   <Box
                     sx={{
@@ -729,15 +740,32 @@ const AssetSellingCard = ({
             <Box py={4} pr={4} flex={1}>
               <Grid container spacing={0}>
                 <Grid xs={12} sm={6} pl={3} item>
-                  <Typography
+                  <Box
+                    display="flex"
+                    sx={{
+                      py: 2,
+                    }}
+                    alignItems="center"
+                  >
+                    <AvatarSuccess
+                      sx={{
+                        mr: 2,
+                      }}
+                      variant="rounded"
+                    >
+                      <TrendingUp fontSize="large" />
+                    </AvatarSuccess>
+                    <Typography variant="h3">{increaseRate}%</Typography>
+                  </Box>
+                  {/* <Typography
                     sx={{
                       pb: 3,
                     }}
                     variant="h4"
                   >
                     P Growth
-                  </Typography>
-                  <Box>
+                  </Typography> */}
+                  {/* <Box>
                     {isLoading ? (
                       <Skeleton variant="rectangular" width={200} height={50} />
                     ) : (
@@ -777,8 +805,8 @@ const AssetSellingCard = ({
                         </Typography>
                       </Box>
                     </Box>
-                  </Box>
-                  {!chartOpen && (
+                  </Box> */}
+                  {/* {!chartOpen && (
                     <Box
                       sx={{
                         display: 'flex',
@@ -823,7 +851,7 @@ const AssetSellingCard = ({
                     </Box>
                   ) : (
                     ''
-                  )}
+                  )} */}
                 </Grid>
                 <Grid xs={12} sm={6} item display="flex">
                   <List

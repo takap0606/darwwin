@@ -29,6 +29,7 @@ import { generateAreaChartConfig } from 'utils/generateAreaChartConfig';
 import { getCumulativePGrowthData } from 'utils/getCumulativePGrowthData';
 import createPortfolioForUltra from 'utils/createPortfolioForUltra';
 import { SERIES_ASSETS } from 'constants/SERIES_ASSETS';
+import { calculateIncreaseRate } from '../utils/calculateIncreaseRate';
 
 const AvatarSuccess = styled(Avatar)(
   ({ theme }) => `
@@ -90,6 +91,19 @@ const ImageWrapper = styled(Box)(
     height: auto;
     }
 `,
+);
+
+const LabelSuccess = styled(Box)(
+  ({ theme }) => `
+        display: inline-block;
+        background: ${theme.colors.success.lighter};
+        color: ${theme.colors.success.main};
+        text-transform: uppercase;
+        font-size: ${theme.typography.pxToRem(11)};
+        font-weight: bold;
+        padding: ${theme.spacing(0.3, 2)};
+        border-radius: ${theme.general.borderRadiusSm};
+    `,
 );
 
 const AssetCard = ({
@@ -256,9 +270,9 @@ const AssetCard = ({
 
   // シリーズを引数にポートフォリオを作成する
   const selectedPortfolio =
-    series !== 'Ultra'
-      ? createPortfolio(series)
-      : createPortfolioForUltra(tokenAmounts);
+    series === 'Ultra' || series === 'X'
+      ? createPortfolioForUltra(tokenAmounts)
+      : createPortfolio(series);
 
   // セット時のETH価格を取得する
   const asset_eth_price = (Number(last_sale_eth_price) * 0.97 * 0.8).toFixed(3);
@@ -324,6 +338,13 @@ const AssetCard = ({
     }, 3000);
   };
 
+  // last_sale_usd_price（初期値）とcurrent_asset_price（現在価格）から増加率を計算
+  // 例えば100ドルから120ドルになった場合、増加率は20%
+  const increaseRate = calculateIncreaseRate(
+    current_asset_price,
+    last_sale_usd_price,
+  );
+
   return (
     <>
       <Card
@@ -344,6 +365,9 @@ const AssetCard = ({
                     <Typography variant="h5" noWrap mr={1}>
                       {name}{' '}
                     </Typography>
+                  </Box>
+                  <Box mt={1}>
+                    <LabelSuccess mr={1}>{series}</LabelSuccess>
                   </Box>
                   <Box
                     sx={{
@@ -454,15 +478,32 @@ const AssetCard = ({
             <Box py={4} pr={4} flex={1}>
               <Grid container spacing={0}>
                 <Grid xs={12} sm={6} pl={3} item>
-                  <Typography
+                  <Box
+                    display="flex"
+                    sx={{
+                      py: 2,
+                    }}
+                    alignItems="center"
+                  >
+                    <AvatarSuccess
+                      sx={{
+                        mr: 2,
+                      }}
+                      variant="rounded"
+                    >
+                      <TrendingUp fontSize="large" />
+                    </AvatarSuccess>
+                    <Typography variant="h3">{increaseRate}%</Typography>
+                  </Box>
+                  {/* <Typography
                     sx={{
                       pb: 3,
                     }}
                     variant="h4"
                   >
                     P Growth
-                  </Typography>
-                  <Box>
+                  </Typography> */}
+                  {/* <Box>
                     {isLoading ? (
                       <Skeleton variant="rectangular" width={200} height={50} />
                     ) : (
@@ -502,8 +543,8 @@ const AssetCard = ({
                         </Typography>
                       </Box>
                     </Box>
-                  </Box>
-                  {!chartOpen && (
+                  </Box> */}
+                  {/* {!chartOpen && (
                     <Box
                       sx={{
                         display: 'flex',
@@ -537,8 +578,8 @@ const AssetCard = ({
                         {componentStatus !== 'idle' ? 'Loading' : 'Show chart'}
                       </Button>
                     </Box>
-                  )}
-                  {chartOpen ? (
+                  )} */}
+                  {/* {chartOpen ? (
                     <Box mr={2} color={'#57CA22'}>
                       <Chart
                         options={areaChartConfig}
@@ -548,7 +589,7 @@ const AssetCard = ({
                     </Box>
                   ) : (
                     ''
-                  )}
+                  )} */}
                 </Grid>
                 <Grid xs={12} sm={6} item display="flex">
                   <List

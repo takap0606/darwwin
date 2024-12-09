@@ -28,7 +28,6 @@ const RequestForSelling = () => {
     const fetchTokenPriceAsync = async () => {
       const price: any = await fetchTokenPrice();
       setTokenPrice(price);
-      console.log(price);
     };
 
     fetchTokenPriceAsync();
