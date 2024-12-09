@@ -6,11 +6,9 @@ const getCurrentTokenPrice = (
   tokenPrice: { data: { marketPrice: any[] } },
   tokenName: string,
 ) => {
-  console.log(tokenPrice.data.marketPrice);
   const token = tokenPrice.data.marketPrice.find(
     (o: any) => o?.symbol === tokenName,
   );
-  // console.log(token);
   return token ? token.indexPrice : 0;
 };
 

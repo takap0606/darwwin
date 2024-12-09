@@ -67,11 +67,11 @@ const MENUS = [
     name: 'NFT Update Data',
     path: '/admin/nft-update-data',
   },
-  // {
-  //   id: 'purchase-request',
-  //   name: 'Purchase Request',
-  //   path: '/admin/purchase-request',
-  // },
+  {
+    id: 'purchase-request',
+    name: 'Purchase Request',
+    path: '/admin/purchase-request',
+  },
 ];
 
 const AdminLinkList = () => {

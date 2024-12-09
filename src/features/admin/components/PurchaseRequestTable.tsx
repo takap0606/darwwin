@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { SetStateAction, useEffect, useState } from 'react';
 
 import {
   Box,
@@ -13,12 +13,18 @@ import {
   TableRow,
   TableCell,
   Table,
+  FormControl,
+  Select,
+  MenuItem,
 } from '@mui/material';
 import { makeStyles } from '@mui/styles';
 
+import AddIcon from '@mui/icons-material/Add';
+import RemoveIcon from '@mui/icons-material/Remove';
+
 import useFirebase from 'lib/useFirebase';
-import { collection, getDocs, orderBy, query } from 'firebase/firestore';
-import TransferListNftCard from './TransferListNftCard';
+import { collection, getDocs, orderBy, query, where } from 'firebase/firestore';
+import PurchaseRequestCard from './PurchaseRequestCard';
 
 const useStyles = makeStyles({
   bold: {
@@ -98,37 +104,60 @@ const TableHeadWrapper = styled(TableHead)(
     `,
 );
 
-const TransferListTable = () => {
+const PurchaseRequestTable = ({ transfered }: { transfered: boolean }) => {
   const { db } = useFirebase();
   const theme = useTheme();
 
   const classes = useStyles();
-  const [filteredNfts, setFilteredNfts] = useState<any[]>([]);
+  const [purchaseRequests, setPurchaseRequests] = useState<any[]>([]);
 
   const [updated, setUpdated] = useState(false);
 
   useEffect(() => {
-    const searchNfts = async () => {
+    const searchPurchaseRequst = async () => {
       if (db) {
         const q = query(
-          collection(db, 'transfer'),
-          orderBy('created_at', 'desc'),
+          collection(db, 'purchase-request'),
+          orderBy('sold_date', 'desc'),
+          where('transfered', '==', transfered),
         );
         const querySnapshot = await getDocs(q);
-        const nftList: any[] = [];
+        const requestList: any[] = [];
         querySnapshot.forEach((doc) => {
           const data = doc.data();
-          nftList.push({
+          requestList.push({
             uid: doc.id,
-            number: Number(data.name?.substr(data.name?.indexOf('#') + 1) || 0),
             ...data,
           });
         });
-        setFilteredNfts(nftList);
+        setPurchaseRequests(requestList);
       }
     };
-    searchNfts();
+    searchPurchaseRequst();
   }, [db, updated]);
+
+  const [open, setOpen] = useState(false);
+
+  const handleOpen = () => {
+    setOpen(!open);
+  };
+
+  const option = ['A', 'B', 'C', 'D', 'E'];
+  const [series, setSeries] = useState('all');
+
+  const handleChangeSeries = (e: {
+    target: { value: SetStateAction<string> };
+  }) => {
+    setSeries(e.target.value);
+  };
+
+  const filteredPurchaseRequest = purchaseRequests.filter((item) => {
+    if (series === 'all') {
+      return item;
+    } else {
+      return item.series === series;
+    }
+  });
 
   return (
     <Card>
@@ -149,23 +178,26 @@ const TransferListTable = () => {
               fontSize: `${theme.typography.pxToRem(12)}`,
             }}
           >
-            NFT Asset List
+            Purchase Request List
           </Typography>
-          <Typography variant="h4">Duplication</Typography>
+          <Typography variant="h4">
+            {transfered ? 'Transfered' : 'Not Transfered'}
+          </Typography>
         </Box>
-        <Box display="flex" alignItems="center">
-          <Box mr={4}>
-            <Typography
-              variant="caption"
-              fontWeight="bold"
-              sx={{
-                fontSize: `${theme.typography.pxToRem(12)}`,
-              }}
-            >
-              個数
-            </Typography>
-            <Typography variant="h4">{filteredNfts.length}</Typography>
+        <Box display="flex" justifyContent="center" alignItems="center" gap={2}>
+          <Box width="100px">
+            <FormControl fullWidth>
+              <Select value={series} onChange={handleChangeSeries}>
+                <MenuItem value="all">All</MenuItem>
+                {option.map((item, index) => (
+                  <MenuItem value={item} key={index}>
+                    {item}
+                  </MenuItem>
+                ))}
+              </Select>
+            </FormControl>
           </Box>
+          <Box onClick={handleOpen}>{!open ? <AddIcon /> : <RemoveIcon />}</Box>
         </Box>
       </Box>
       <List disablePadding>
@@ -181,16 +213,46 @@ const TransferListTable = () => {
                   </TableCell>
                   <TableCell align="left">
                     <Typography className={classes.bold} noWrap>
-                      Name / Owner Wallet Address / Transfer Date
+                      Name / Owner Wallet Address / Set Date
+                    </Typography>
+                  </TableCell>
+                  <TableCell align="left">
+                    <Typography className={classes.bold} noWrap>
+                      現在のウォレットアドレス / 運用状況
+                    </Typography>
+                  </TableCell>
+                  <TableCell align="center">
+                    <Typography className={classes.bold} noWrap>
+                      Check
+                    </Typography>
+                  </TableCell>
+                  <TableCell align="center">
+                    <Typography className={classes.bold} noWrap>
+                      Transfered
+                    </Typography>
+                  </TableCell>
+                  <TableCell align="center">
+                    <Typography className={classes.bold} noWrap>
+                      Saved
+                    </Typography>
+                  </TableCell>
+                  <TableCell align="left">
+                    <Typography className={classes.bold} noWrap>
+                      Series
+                    </Typography>
+                  </TableCell>
+                  <TableCell align="center">
+                    <Typography className={classes.bold} noWrap>
+                      Delete
                     </Typography>
                   </TableCell>
                 </TableRow>
               </TableHeadWrapper>
-              {filteredNfts.length > 0 &&
-                filteredNfts.map((nft) => (
-                  <TransferListNftCard
-                    nft={nft}
-                    key={nft.name + nft.uid}
+              {filteredPurchaseRequest.length > 0 &&
+                filteredPurchaseRequest.map((request, index) => (
+                  <PurchaseRequestCard
+                    request={request}
+                    key={index}
                     setUpdated={setUpdated}
                     updated={updated}
                   />
@@ -203,4 +265,4 @@ const TransferListTable = () => {
   );
 };
 
-export default TransferListTable;
+export default PurchaseRequestTable;
