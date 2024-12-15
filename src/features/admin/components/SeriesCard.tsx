@@ -220,13 +220,6 @@ const SeriesCard = ({ nft, selectedPortfolio, setUpdated, updated }: any) => {
                   <LabelSuccess>{nft?.level}</LabelSuccess>
                 </Box>
               </TableCell>
-              {nft?.series === 'X' && (
-                <TableCell align="center">
-                  <Box>
-                    <LabelSuccess>{nft?.pa_dividend_rate}</LabelSuccess>
-                  </Box>
-                </TableCell>
-              )}
               <TableCell align="center">
                 <Box>
                   <LabelSuccess>{nft?.nft_points}</LabelSuccess>

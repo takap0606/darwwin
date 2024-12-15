@@ -43,6 +43,11 @@ const MENUS = [
     path: '/admin/series/a',
   },
   {
+    id: 'series-x',
+    name: 'X series',
+    path: '/admin/series/x',
+  },
+  {
     id: 'series-ultra',
     name: 'Ultra Rare',
     path: '/admin/series/ultra',

@@ -259,13 +259,6 @@ const Series = ({ series }: { series: string }) => {
                         Level
                       </Typography>
                     </TableCell>
-                    {series === 'X' && (
-                      <TableCell align="left">
-                        <Typography className={classes.bold} noWrap>
-                          Dividend Rate
-                        </Typography>
-                      </TableCell>
-                    )}
                     <TableCell align="left">
                       <Typography className={classes.bold} noWrap>
                         NFT Points
