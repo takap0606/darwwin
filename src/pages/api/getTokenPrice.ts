@@ -1,34 +1,25 @@
 // Next.js API route support: https://nextjs.org/docs/api-routes/introduction
+import { RestClientV5 } from 'bybit-api';
+import type { NextApiRequest, NextApiResponse } from 'next';
 import axios from 'axios';
-import crypto from 'crypto';
 
 const getUrl = (serviceType: string, endpoint: any) =>
   `https://api.paradise.exchange/${serviceType}${endpoint}`;
 const getSpotUrl = (endpoint: string) => getUrl('spot', endpoint);
-const getBybitUrl = (endpoint: string) =>
-  `https://api.bytick.com/v5${endpoint}`;
 
-// APIキー設定
-const BYBIT_API_KEY = process.env.BYBIT_API_KEY;
-const BYBIT_API_SECRET = process.env.BYBIT_API_SECRET;
+const API_KEY = process.env.BYBIT_API_KEY;
+const API_SECRET = process.env.BYBIT_API_SECRET;
 
-// 署名生成関数
-const generateSignature = (timestamp: number, apiSecret: string) => {
-  return crypto
-    .createHmac('sha256', apiSecret)
-    .update(String(timestamp))
-    .digest('hex');
-};
+// Bybit APIクライアントの初期化
+const bybitClient = new RestClientV5({
+  testnet: false, // 本番環境を使用
+  key: API_KEY,
+  secret: API_SECRET,
+});
 
 export default async function handler(
-  req: any,
-  res: {
-    status: (arg0: number) => {
-      (): any;
-      new (): any;
-      json: { (arg0: { marketPrice: any }): void; new (): any };
-    };
-  },
+  req: NextApiRequest,
+  res: NextApiResponse,
 ) {
   const symbols = [
     'BTC',
@@ -42,7 +33,7 @@ export default async function handler(
     'DOT',
     'FIL',
     'AVAX',
-    'POL', // MATICからPOLに変更
+    'POL',
     'SAND',
     'LTC',
     'TRX',
@@ -56,46 +47,35 @@ export default async function handler(
     'GALA',
     'APT',
     'FET',
-  ].map((symbol) => `${symbol}-USD`);
+  ];
 
   const getMarketPrice = async (symbol: string) => {
-    if (symbol === 'PDT-USD' || symbol === 'XMR-USD') {
+    if (symbol === 'PDT' || symbol === 'XMR') {
       // Paradise Exchangeからの価格取得
-      const endpoint = `/api/v3.2/price?symbol=${symbol}`;
+      const endpoint = `/api/v3.2/price?symbol=${symbol}-USD`;
       try {
         const res = await axios.get(getSpotUrl(endpoint));
         return res.data;
       } catch (error) {
-        console.error(`Error fetching PDT price:`, error);
+        console.error(`Error fetching ${symbol} price:`, error);
         return null;
       }
     } else {
-      // Bybitからの価格取得（本番環境）
-      const bybitSymbol = `${symbol.replace('-USD', '')}USDT`;
-      const endpoint = `/market/tickers?category=spot&symbol=${bybitSymbol}`;
-      const timestamp = Date.now();
-
+      // Bybit APIを使用した価格取得
       try {
-        const res = await axios.get(getBybitUrl(endpoint), {
-          headers: {
-            'X-BAPI-API-KEY': BYBIT_API_KEY,
-            'X-BAPI-SIGN': generateSignature(timestamp, BYBIT_API_SECRET || ''),
-            'X-BAPI-TIMESTAMP': timestamp.toString(),
-            'X-BAPI-RECV-WINDOW': '5000',
-            Accept: 'application/json',
-            'Content-Type': 'application/json',
-          },
-          timeout: 5000,
+        const response = await bybitClient.getTickers({
+          category: 'spot',
+          symbol: `${symbol}USDT`,
         });
 
-        if (res.data.retCode !== 0) {
-          // Bybitの正常レスポンスコードは0
-          console.error(`Bybit API error for ${symbol}:`, res.data);
+        if (response.retCode !== 0) {
+          console.error(`Bybit API error for ${symbol}:`, response);
           return null;
         }
+
         return {
-          symbol: symbol,
-          indexPrice: res.data.result.list[0].lastPrice,
+          symbol: `${symbol}-USD`,
+          indexPrice: response.result.list[0].lastPrice,
           timestamp: new Date().getTime(),
         };
       } catch (error) {
@@ -105,8 +85,12 @@ export default async function handler(
     }
   };
 
-  const marketPrices = await Promise.all(symbols.map(getMarketPrice));
-  const marketPrice = marketPrices.flat(); // ネストされた配列を平坦化
-
-  res.status(200).json({ marketPrice });
+  try {
+    const marketPrices = await Promise.all(symbols.map(getMarketPrice));
+    const marketPrice = marketPrices.filter((price) => price !== null);
+    res.status(200).json({ marketPrice });
+  } catch (error) {
+    console.error('Error processing market prices:', error);
+    res.status(500).json({ error: 'Internal Server Error' });
+  }
 }
