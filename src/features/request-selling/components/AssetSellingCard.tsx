@@ -656,6 +656,8 @@ const AssetSellingCard = ({
                           )}
                         </Box>
                         <Button
+                          // seriesがXの場合はボタンを無効にする
+                          disabled={series === 'X'}
                           onClick={handleClickRequestComponentStatus}
                           sx={{ width: '100%' }}
                           variant="outlined"
