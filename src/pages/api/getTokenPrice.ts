@@ -4,6 +4,7 @@ import axios from 'axios';
 const getUrl = (serviceType: string, endpoint: any) =>
   `https://api.paradise.exchange/${serviceType}${endpoint}`;
 const getSpotUrl = (endpoint: string) => getUrl('spot', endpoint);
+const getBybitUrl = (endpoint: string) => `https://api.bybit.com/v5${endpoint}`;
 
 export default async function handler(
   req: any,
@@ -27,23 +28,48 @@ export default async function handler(
     'DOT',
     'FIL',
     'AVAX',
-    'MATIC',
+    'POL', // MATICからPOLに変更
     'SAND',
     'LTC',
     'TRX',
     'LINK',
     'DOGE',
     'XMR',
+    'ICP',
+    'PEPE',
+    'SUI',
+    'NEAR',
+    'GALA',
+    'APT',
+    'FET',
   ].map((symbol) => `${symbol}-USD`);
 
   const getMarketPrice = async (symbol: string) => {
-    const endpoint = `/api/v3.2/price?symbol=${symbol}`;
-    try {
-      const res = await axios.get(getSpotUrl(endpoint));
-      return res.data;
-    } catch (error) {
-      console.error(`Error fetching data for ${symbol}:`, error);
-      return null;
+    if (symbol === 'PDT-USD' || symbol === 'XMR-USD') {
+      // Paradise Exchangeからの価格取得
+      const endpoint = `/api/v3.2/price?symbol=${symbol}`;
+      try {
+        const res = await axios.get(getSpotUrl(endpoint));
+        return res.data;
+      } catch (error) {
+        console.error(`Error fetching PDT price:`, error);
+        return null;
+      }
+    } else {
+      // Bybitからの価格取得（本番環境）
+      const bybitSymbol = `${symbol.replace('-USD', '')}USDT`;
+      const endpoint = `/market/tickers?category=spot&symbol=${bybitSymbol}`;
+      try {
+        const res = await axios.get(getBybitUrl(endpoint));
+        return {
+          symbol: symbol,
+          indexPrice: res.data.result.list[0].lastPrice,
+          timestamp: new Date().getTime(),
+        };
+      } catch (error) {
+        console.error(`Error fetching ${symbol} price from Bybit:`, error);
+        return null;
+      }
     }
   };
 

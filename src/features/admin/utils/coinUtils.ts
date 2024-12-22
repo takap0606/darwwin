@@ -11,8 +11,18 @@ export type CoinType =
   | 'avax'
   | 'matic'
   | 'sand'
+  | 'ltc'
+  | 'trx'
+  | 'link'
+  | 'doge'
+  | 'xmr'
   | 'pdt'
-  | 'ltc';
+  | 'pepe'
+  | 'sui'
+  | 'near'
+  | 'gala'
+  | 'apt'
+  | 'fet';
 
 export const orderPriority: { [key in CoinType]: number } = {
   btc: 1,
@@ -28,7 +38,17 @@ export const orderPriority: { [key in CoinType]: number } = {
   matic: 11,
   sand: 12,
   pdt: 13,
-  ltc: 14,
+  trx: 14,
+  link: 15,
+  doge: 16,
+  xmr: 17,
+  pepe: 18,
+  sui: 19,
+  near: 20,
+  gala: 21,
+  apt: 22,
+  fet: 23,
+  ltc: 24,
 };
 
 export const fetchCoinIcon = (coin: CoinType): string => {
@@ -47,6 +67,16 @@ export const fetchCoinIcon = (coin: CoinType): string => {
     fil: '/static/images/tokens/fil.png',
     avax: '/static/images/tokens/avax.png',
     sand: '/static/images/tokens/sand.png',
+    pepe: '/static/images/tokens/pepe.png',
+    sui: '/static/images/tokens/sui.png',
+    near: '/static/images/tokens/near.png',
+    gala: '/static/images/tokens/gala.png',
+    apt: '/static/images/tokens/apt.png',
+    fet: '/static/images/tokens/fet.png',
+    trx: '/static/images/tokens/trx.png',
+    link: '/static/images/tokens/link.png',
+    doge: '/static/images/tokens/doge.png',
+    xmr: '/static/images/tokens/xmr.png',
   };
 
   return iconMap[coin] || '/static/images/placeholders/logo/default_coin.png';

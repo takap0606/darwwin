@@ -23,21 +23,9 @@ export const calculateTokens = (
     Number(current_asset_price) - Number(last_sale_usd_price)
   ).toFixed(0);
 
-  console.log(
-    'profitInUsd',
-    profitInUsd,
-    'current_asset_price',
-    current_asset_price,
-    'last_sale_usd_price',
-    last_sale_usd_price,
-  );
-
   // 利益がプラスの場合は
   // ②1銘柄の利益 = 利益 / 銘柄数
   const profitInUsdPerToken = Number(profitInUsd) / tokenAmountsArray.length;
-
-  console.log('tokenAmountsArray.length', tokenAmountsArray.length);
-  console.log('profitInUsdPerToken', profitInUsdPerToken);
 
   const calculatedTokens = Object.entries(tokens).reduce(
     (acc, [key, price]) => {
@@ -54,7 +42,6 @@ export const calculateTokens = (
               )
             : '0';
 
-        console.log('tokenKey:', tokenKey, 'profit:', profit);
         // ④各銘柄の手数料 = 各銘柄の利益 * 手数料率（ユーザーに応じて20-30%)
         const fee =
           Number(profitInUsd) > 0

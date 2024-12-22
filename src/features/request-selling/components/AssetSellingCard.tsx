@@ -325,7 +325,7 @@ const AssetSellingCard = ({
   );
 
   const current_asset_price =
-    series === 'Ultra'
+    series === 'Ultra' || series === 'X'
       ? selectedPortfolio
           .reduce(
             (sum: number, assetInfo: any) =>
@@ -755,155 +755,64 @@ const AssetSellingCard = ({
                     >
                       <TrendingUp fontSize="large" />
                     </AvatarSuccess>
-                    <Typography variant="h3">{increaseRate}%</Typography>
+                    <Typography variant="h3">
+                      {Number(increaseRate) > 0 ? `${increaseRate}%` : '-'}
+                    </Typography>
                   </Box>
-                  {/* <Typography
-                    sx={{
-                      pb: 3,
-                    }}
-                    variant="h4"
-                  >
-                    P Growth
-                  </Typography> */}
-                  {/* <Box>
-                    {isLoading ? (
-                      <Skeleton variant="rectangular" width={200} height={50} />
-                    ) : (
-                      <Typography variant="h1" gutterBottom>
-                        {(totalGrowth * 100).toFixed(6)}%
-                      </Typography>
-                    )}
-                    <Box
-                      display="flex"
-                      sx={{
-                        py: 2,
-                      }}
-                      alignItems="center"
-                    >
-                      <AvatarSuccess
-                        sx={{
-                          mr: 2,
-                        }}
-                        variant="rounded"
-                      >
-                        <TrendingUp fontSize="large" />
-                      </AvatarSuccess>
-                      <Box>
-                        {isLoading ? (
-                          <Skeleton
-                            variant="rectangular"
-                            width={100}
-                            height={20}
-                          />
-                        ) : (
-                          <Typography variant="h4">
-                            {(weekly_growth * 100).toFixed(6)}%
-                          </Typography>
-                        )}
-                        <Typography variant="subtitle2" noWrap>
-                          Weekly
-                        </Typography>
-                      </Box>
-                    </Box>
-                  </Box> */}
-                  {/* {!chartOpen && (
-                    <Box
-                      sx={{
-                        display: 'flex',
-                        flexDirection: 'column',
-                        alignItems: 'center',
-                      }}
-                    >
-                      <Box sx={{ height: 40 }}>
-                        {componentStatus === 'success' ? (
-                          <Typography>Success!</Typography>
-                        ) : (
-                          <Fade
-                            in={componentStatus === 'progress'}
-                            style={{
-                              transitionDelay:
-                                componentStatus === 'progress'
-                                  ? '800ms'
-                                  : '0ms',
-                            }}
-                            unmountOnExit
-                          >
-                            <CircularProgress />
-                          </Fade>
-                        )}
-                      </Box>
-                      <Button
-                        variant="outlined"
-                        onClick={handleClickQuery}
-                        sx={{ m: 2 }}
-                      >
-                        {componentStatus !== 'idle' ? 'Loading' : 'Show chart'}
-                      </Button>
-                    </Box>
-                  )}
-                  {chartOpen ? (
-                    <Box mr={2} color={'#57CA22'}>
-                      <Chart
-                        options={areaChartConfig}
-                        series={cumulativePGrowthData}
-                        type="line"
-                      />
-                    </Box>
-                  ) : (
-                    ''
-                  )} */}
                 </Grid>
                 <Grid xs={12} sm={6} item display="flex">
-                  <List
-                    disablePadding
-                    sx={{
-                      width: '100%',
-                    }}
-                  >
-                    {selectedPortfolio.map((item) => {
-                      const tokenKey = item.primary.toLowerCase();
-                      const tokenAmount = tokenAmounts[tokenKey]
-                        ? Number(tokenAmounts[tokenKey]).toFixed(
-                            item.numDecimalPlaces,
-                          )
-                        : '0';
+                  {series !== 'X' && (
+                    <List
+                      disablePadding
+                      sx={{
+                        width: '100%',
+                      }}
+                    >
+                      {selectedPortfolio.map((item) => {
+                        const tokenKey = item.primary.toLowerCase();
+                        const tokenAmount = tokenAmounts[tokenKey]
+                          ? Number(tokenAmounts[tokenKey]).toFixed(
+                              item.numDecimalPlaces,
+                            )
+                          : '0';
 
-                      if (tokenAmount === '0') return;
+                        if (tokenAmount === '0') return;
 
-                      return (
-                        <ListItem disableGutters key={item.id}>
-                          <ListItemAvatarWrapper>
-                            <img alt="" src={item.image} />
-                          </ListItemAvatarWrapper>
-                          <ListItemText
-                            primary={item.primary}
-                            primaryTypographyProps={{
-                              variant: 'h5',
-                              noWrap: true,
-                            }}
-                            secondary={item.secondary}
-                            secondaryTypographyProps={{
-                              variant: 'subtitle2',
-                              noWrap: true,
-                            }}
-                          />
-                          <Box>
-                            {isLoading ? (
-                              <Skeleton
-                                variant="rectangular"
-                                width={100}
-                                height={20}
-                              />
-                            ) : (
-                              <Typography align="right" variant="h4" noWrap>
-                                {tokenAmount}
-                              </Typography>
-                            )}
-                          </Box>
-                        </ListItem>
-                      );
-                    })}
-                  </List>
+                        return (
+                          <ListItem disableGutters key={item.id}>
+                            <ListItemAvatarWrapper>
+                              <img alt="" src={item.image} />
+                            </ListItemAvatarWrapper>
+                            <ListItemText
+                              primary={item.primary}
+                              primaryTypographyProps={{
+                                variant: 'h5',
+                                noWrap: true,
+                              }}
+                              secondary={item.secondary}
+                              secondaryTypographyProps={{
+                                variant: 'subtitle2',
+                                noWrap: true,
+                              }}
+                            />
+                            <Box>
+                              {isLoading ? (
+                                <Skeleton
+                                  variant="rectangular"
+                                  width={100}
+                                  height={20}
+                                />
+                              ) : (
+                                <Typography align="right" variant="h4" noWrap>
+                                  {tokenAmount}
+                                </Typography>
+                              )}
+                            </Box>
+                          </ListItem>
+                        );
+                      })}
+                    </List>
+                  )}
                 </Grid>
               </Grid>
             </Box>

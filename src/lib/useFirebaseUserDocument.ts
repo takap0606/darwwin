@@ -20,7 +20,6 @@ export default function useFirebaseDocument() {
               id: doc.id,
             });
           } else {
-            console.log('hey', doc);
             setDocument(null);
           }
           setIsLoading(false);

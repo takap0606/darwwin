@@ -36,7 +36,6 @@ const AssetControlForm: React.FC = () => {
   const fetchSeriesUltraRare = async () => {
     if (!db) return;
     try {
-      console.log('Fetching series ultra rare');
       const nftsRef = collection(db, 'nfts');
       const q = query(
         nftsRef,
@@ -52,7 +51,6 @@ const AssetControlForm: React.FC = () => {
             index === self.findIndex((t) => t.name === nft.name),
         );
 
-      console.log(data);
       setUltraNfts(data);
     } catch (error) {
       console.error('Error fetching ultra rare NFTs:', error);

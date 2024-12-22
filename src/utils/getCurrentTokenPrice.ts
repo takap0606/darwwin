@@ -42,5 +42,11 @@ export const getTokenList = () => {
     'LINK',
     'DOGE',
     'XMR',
+    'PEPE',
+    'SUI',
+    'NEAR',
+    'GALA',
+    'APT',
+    'FET',
   ];
 };

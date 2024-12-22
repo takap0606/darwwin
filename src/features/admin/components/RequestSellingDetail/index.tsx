@@ -257,8 +257,6 @@ const RequestSellingDetail = () => {
 
   const parentsArray: any = [];
 
-  console.log('nft', nft);
-
   // 計算方法
   // 手数料 = 利益 * NFTの手数料％（20-30%）
   // 利益 = 手数料 ÷ NFTの手数料％（20-30%）

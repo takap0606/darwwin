@@ -23,6 +23,16 @@ export type AssetCardData = {
   set_matic: number;
   set_sand: number;
   set_ltc: number;
+  set_trx: number;
+  set_link: number;
+  set_doge: number;
+  set_xmr: number;
+  set_pepe: number;
+  set_sui: number;
+  set_near: number;
+  set_gala: number;
+  set_apt: number;
+  set_fet: number;
 };
 
 export interface AssetCardProps {
