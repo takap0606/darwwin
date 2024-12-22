@@ -4,7 +4,8 @@ import axios from 'axios';
 const getUrl = (serviceType: string, endpoint: any) =>
   `https://api.paradise.exchange/${serviceType}${endpoint}`;
 const getSpotUrl = (endpoint: string) => getUrl('spot', endpoint);
-const getBybitUrl = (endpoint: string) => `https://api.bybit.com/v5${endpoint}`;
+const getBybitUrl = (endpoint: string) =>
+  `https://api.bytick.com/v5${endpoint}`;
 
 export default async function handler(
   req: any,
@@ -60,7 +61,19 @@ export default async function handler(
       const bybitSymbol = `${symbol.replace('-USD', '')}USDT`;
       const endpoint = `/market/tickers?category=spot&symbol=${bybitSymbol}`;
       try {
-        const res = await axios.get(getBybitUrl(endpoint));
+        const res = await axios.get(getBybitUrl(endpoint), {
+          headers: {
+            Accept: 'application/json',
+            'Content-Type': 'application/json',
+            'cdn-request-id': `${Date.now()}-${bybitSymbol}`, // リクエストの追跡用
+          },
+          timeout: 5000,
+        });
+        if (res.data.retCode !== 0) {
+          // Bybitの正常レスポンスコードは0
+          console.error(`Bybit API error for ${symbol}:`, res.data);
+          return null;
+        }
         return {
           symbol: symbol,
           indexPrice: res.data.result.list[0].lastPrice,
