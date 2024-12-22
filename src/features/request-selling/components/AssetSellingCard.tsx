@@ -854,53 +854,55 @@ const AssetSellingCard = ({
             </Box>
           </Box>
           <form onSubmit={formik.handleSubmit}>
-            <Box mt={0.5}>
-              {selectedPortfolio.map((item) => {
-                // item.primary (tokenName) に対応する calculatedToken を見つけます。
-                const calculatedToken = findCalculatedToken(
-                  calculatedTokens,
-                  item.primary,
-                );
+            {series !== 'X' && (
+              <Box mt={0.5}>
+                {selectedPortfolio.map((item) => {
+                  // item.primary (tokenName) に対応する calculatedToken を見つけます。
+                  const calculatedToken = findCalculatedToken(
+                    calculatedTokens,
+                    item.primary,
+                  );
 
-                // calculatedToken が見つかった場合にはその値を使用し、見つからなかった場合にはデフォルト値を使用します。
-                const currentAmount = calculatedToken
-                  ? calculatedToken.currentAmount
-                  : '0';
-                const paymentAmount = calculatedToken
-                  ? calculatedToken.paymentAmount
-                  : '0';
+                  // calculatedToken が見つかった場合にはその値を使用し、見つからなかった場合にはデフォルト値を使用します。
+                  const currentAmount = calculatedToken
+                    ? calculatedToken.currentAmount
+                    : '0';
+                  const paymentAmount = calculatedToken
+                    ? calculatedToken.paymentAmount
+                    : '0';
 
-                if (currentAmount === '0') return;
+                  if (currentAmount === '0') return;
 
-                return (
-                  <ListItem sx={{ py: 0.25 }} disableGutters key={item.id}>
-                    <ListItemAvatarWrapper>
-                      <img alt="" src={item.image} />
-                    </ListItemAvatarWrapper>
-                    <ListItemText
-                      primary={item.primary}
-                      primaryTypographyProps={{
-                        variant: 'h5',
-                        noWrap: true,
-                      }}
-                      secondary={item.secondary}
-                      secondaryTypographyProps={{
-                        variant: 'subtitle2',
-                        noWrap: true,
-                      }}
-                    />
-                    <Box>
-                      <Typography align="right" noWrap>
-                        Current: {currentAmount}
-                      </Typography>
-                      <Typography align="right" noWrap>
-                        Payment: {paymentAmount}
-                      </Typography>
-                    </Box>
-                  </ListItem>
-                );
-              })}
-            </Box>
+                  return (
+                    <ListItem sx={{ py: 0.25 }} disableGutters key={item.id}>
+                      <ListItemAvatarWrapper>
+                        <img alt="" src={item.image} />
+                      </ListItemAvatarWrapper>
+                      <ListItemText
+                        primary={item.primary}
+                        primaryTypographyProps={{
+                          variant: 'h5',
+                          noWrap: true,
+                        }}
+                        secondary={item.secondary}
+                        secondaryTypographyProps={{
+                          variant: 'subtitle2',
+                          noWrap: true,
+                        }}
+                      />
+                      <Box>
+                        <Typography align="right" noWrap>
+                          Current: {currentAmount}
+                        </Typography>
+                        <Typography align="right" noWrap>
+                          Payment: {paymentAmount}
+                        </Typography>
+                      </Box>
+                    </ListItem>
+                  );
+                })}
+              </Box>
+            )}
             <Box textAlign="center">
               <Typography mb={1} textAlign="left">
                 Please transfer the NFT to the designated wallet before the
