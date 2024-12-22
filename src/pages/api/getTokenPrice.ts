@@ -1,11 +1,24 @@
 // Next.js API route support: https://nextjs.org/docs/api-routes/introduction
 import axios from 'axios';
+import crypto from 'crypto';
 
 const getUrl = (serviceType: string, endpoint: any) =>
   `https://api.paradise.exchange/${serviceType}${endpoint}`;
 const getSpotUrl = (endpoint: string) => getUrl('spot', endpoint);
 const getBybitUrl = (endpoint: string) =>
   `https://api.bytick.com/v5${endpoint}`;
+
+// APIキー設定
+const BYBIT_API_KEY = process.env.BYBIT_API_KEY;
+const BYBIT_API_SECRET = process.env.BYBIT_API_SECRET;
+
+// 署名生成関数
+const generateSignature = (timestamp: number, apiSecret: string) => {
+  return crypto
+    .createHmac('sha256', apiSecret)
+    .update(String(timestamp))
+    .digest('hex');
+};
 
 export default async function handler(
   req: any,
@@ -60,15 +73,21 @@ export default async function handler(
       // Bybitからの価格取得（本番環境）
       const bybitSymbol = `${symbol.replace('-USD', '')}USDT`;
       const endpoint = `/market/tickers?category=spot&symbol=${bybitSymbol}`;
+      const timestamp = Date.now();
+
       try {
         const res = await axios.get(getBybitUrl(endpoint), {
           headers: {
+            'X-BAPI-API-KEY': BYBIT_API_KEY,
+            'X-BAPI-SIGN': generateSignature(timestamp, BYBIT_API_SECRET || ''),
+            'X-BAPI-TIMESTAMP': timestamp.toString(),
+            'X-BAPI-RECV-WINDOW': '5000',
             Accept: 'application/json',
             'Content-Type': 'application/json',
-            'cdn-request-id': `${Date.now()}-${bybitSymbol}`, // リクエストの追跡用
           },
           timeout: 5000,
         });
+
         if (res.data.retCode !== 0) {
           // Bybitの正常レスポンスコードは0
           console.error(`Bybit API error for ${symbol}:`, res.data);
