@@ -1,0 +1,9 @@
+{
+  "regions": ["fra1"],
+  "functions": {
+    "src/pages/api/**/*": {
+      "memory": 1024,
+      "maxDuration": 10
+    }
+  }
+}
