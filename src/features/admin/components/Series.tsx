@@ -147,7 +147,7 @@ const Series = ({ series }: { series: string }) => {
         // 運用設定が必要なNFTのみ表示する絞り込み機能
         const values = ['0', undefined];
         const filteredData = nftList.filter((data) =>
-          values.includes(data.set_btc),
+          values.includes(data.set_btc || data.set_eth),
         );
         setFilteredNfts(filteredData);
       }

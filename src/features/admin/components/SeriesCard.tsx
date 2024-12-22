@@ -274,7 +274,9 @@ const SeriesCard = ({ nft, selectedPortfolio, setUpdated, updated }: any) => {
                         },
                       }}
                     >
+                      {/* set_ethに値がある場合は Not Operated Yet を表示しない */}
                       {(nft?.set_btc == undefined || nft?.set_btc == '0') &&
+                        (nft?.set_eth == undefined || nft?.set_eth == '0') &&
                         'Not Operated Yet'}
                     </Box>
                   </Box>
