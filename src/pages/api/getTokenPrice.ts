@@ -38,11 +38,9 @@ export default async function handler(
     const paradisePrices = await Promise.all(
       PARADISE_SYMBOLS.map(getParadisePrice),
     );
-    console.log('paradisePrices', paradisePrices);
 
     // Bybitからの価格取得
     const bybitPrices = await Promise.all(BYBIT_SYMBOLS.map(getBybitPrice));
-    console.log('bybitPrices', bybitPrices);
 
     // 結果の結合とnullの除外
     const marketPrice = [...paradisePrices, ...bybitPrices].filter(
