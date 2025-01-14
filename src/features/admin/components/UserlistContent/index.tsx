@@ -85,6 +85,17 @@ const getPeriodDates = (date: Date): { start: Date; end: Date } => {
   };
 };
 
+// 特別報酬対象者の設定
+const SPECIAL_REWARDS: Record<string, { rate: number; name: string }> = {
+  '0x85276a8cc981791da8592e15f4a47bcbf878a344': {
+    rate: 0.03,
+    name: 'STATESMAN',
+  },
+  '0xa7c6b1df071f656f9228441bb67d587eaaeb99b8': { rate: 0.03, name: 'jazz' },
+  '0x8007a6077f9356124f302fff76c698ad89493c24': { rate: 0.05, name: 'toshi1' },
+  '0xe35ce617fed4f3e75cda40f2e4c6ce56f683ad20': { rate: 0.05, name: 'aikooo' },
+};
+
 const UserlistContent = () => {
   const router = useRouter();
   const { db } = useFirebase();
@@ -215,12 +226,24 @@ const UserlistContent = () => {
       rate = foundRule.rate;
     }
 
+    // 自分自身のethSumと子孫全体のethSumを合計（手数料3%を引いた金額）
+    const totalEthVolume =
+      (nodes.ethSum + sumTreeValues(nodes.children, 'ethSum')) * 0.97;
+
+    // 特別報酬の計算（対象者のみ）
+    const specialReward =
+      nodes.id in SPECIAL_REWARDS
+        ? totalEthVolume * SPECIAL_REWARDS[nodes.id].rate
+        : 0;
+
     excelAras.push({
       name: nodes.nickname,
       walletAddress: nodes.id,
       setRate: nodes.setRate,
       ownedNftLength: nodes.ownedNftLength,
       totalAra: floorDecimal(affiliateRewardTotal, 3),
+      volume: floorDecimal(totalEthVolume, 4),
+      specialReward: floorDecimal(specialReward, 3),
     });
 
     return (
@@ -478,6 +501,8 @@ const UserlistContent = () => {
       { header: 'Set Rate', key: 'setRate' },
       { header: 'Nfts', key: 'ownedNftLength' },
       { header: 'ARA', key: 'totalAra' },
+      { header: 'Volume (ETH)', key: 'volume' },
+      { header: 'Special Reward (ETH)', key: 'specialReward' },
     ];
 
     worksheet.addRows(excelAras);
