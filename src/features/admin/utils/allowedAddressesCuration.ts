@@ -3,6 +3,7 @@ const allowedAddressesCuration: string[] = [
   '0x6ae898e03f38f70484a8f208cf5638b42db879a2',
   '0x82017683db95af573094fa806c5971cf7aebbcbc', // MediaClub
   '0xf5dd1ae4063ff5d7ccb2e26ff91a788c93311917', // MediaClub
+  '0x08832ae1c81C945B6c48a44B92D937122882f92e', // サポート
 ];
 
 export default allowedAddressesCuration;
